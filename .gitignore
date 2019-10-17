@@ -1,0 +1,10 @@
+dependeny directories
+
+node_modules/
+
+.vscode
+.env
+
+npm-debug.log*
+
+package-lock.json*
