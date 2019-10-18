@@ -19,7 +19,7 @@ class Page {
             .typeText(this.usernameSelector, username)
             .typeText(this.passwordSelector,password)
             .click(this.loginFormSelector)    
-        }, {preserve: true})
+        }, { preserveUrl: true })
     )
     loginSuperAdmin = () => this.login(SUPER_ADMIN_USERNAME, SUPER_ADMIN_PASSWORD);
 
