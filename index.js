@@ -1,3 +1,5 @@
+require('./env');
+
 const createTestCafe =  require('testcafe')
 
 const createBrowserConnection = async () => {

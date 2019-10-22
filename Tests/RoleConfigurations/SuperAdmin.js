@@ -1,6 +1,3 @@
-import dotenv from "dotenv";
-dotenv.config();
-
 import Pages from "../page-objects"
 const { DASHBOARD_URL, LOGIN_URL } = process.env
 const pages = Pages
