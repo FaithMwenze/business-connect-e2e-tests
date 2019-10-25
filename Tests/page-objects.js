@@ -1,5 +1,3 @@
-import dotenv from "dotenv"
-dotenv.config()
 import { Selector } from 'testcafe';
 import { Role } from 'testcafe';
 
@@ -13,7 +11,7 @@ class Page {
         this.loginFormSelector = Selector('.jss9 button.MuiButton-text')
     }
 
-    login = (username, password) => (
+    login = ( username, password) => (
         Role(LOGIN_URL, async( testController) => {
             await testController
             .typeText(this.usernameSelector, username)
