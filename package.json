@@ -4,7 +4,8 @@
   "description": "Automated e2e tests for business connect",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "node index.js",
+    "lint": "./node_modules/.bin/eslint Tests -c  .eslintrc.json --ext js "
   },
   "repository": {
     "type": "git",
@@ -13,6 +14,7 @@
   "author": "Beth Wambui",
   "license": "ISC",
   "dependencies": {
+    "babel-eslint": "^10.0.3",
     "dotenv": "^8.2.0",
     "testcafe": "^1.5.0"
   },
