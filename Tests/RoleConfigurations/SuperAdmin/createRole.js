@@ -59,16 +59,3 @@ test("create Bank User Role", async(testController) => {
 	await testController.expect(roles.createdRoleNameSelector.innerText).eql(roleName)
 	await testController.expect(roles.roleTypeSelector.innerText).eql("Bank")
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
