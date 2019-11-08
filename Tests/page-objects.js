@@ -1,7 +1,10 @@
 import { Selector } from 'testcafe';
 import { Role } from 'testcafe';
 
-const {LOGIN_URL,SUPER_ADMIN_USERNAME, SUPER_ADMIN_PASSWORD} = process.env
+const {SUPER_ADMIN_MAKER_USERNAME,
+	SUPER_ADMIN_MAKER_PASSWORD,
+	SUPER_ADMIN_CHECKER_USERNAME,
+	SUPER_ADMIN_CHECKER_PASSWORD, LOGIN_URL} = process.env
 
 
 class Page {
@@ -19,7 +22,8 @@ class Page {
     			.click(this.loginFormSelector)   
     	}, { preserveUrl: true })
     )
-    loginSuperAdmin = () => this.login(SUPER_ADMIN_USERNAME, SUPER_ADMIN_PASSWORD);
+	loginSuperAdminMaker = () => this.login(SUPER_ADMIN_MAKER_USERNAME,SUPER_ADMIN_MAKER_PASSWORD);
+	loginSuperAdminChecker = () => this.login(SUPER_ADMIN_CHECKER_USERNAME, SUPER_ADMIN_CHECKER_PASSWORD )
 
 };
 
