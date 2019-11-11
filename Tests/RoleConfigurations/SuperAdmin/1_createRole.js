@@ -25,15 +25,15 @@ test.before(loginSuperAdminMaker)
 
 test.before(loginSuperAdminChecker)
 ("Approve a super Admin role whose status is PENDING", async (testController) => {
-    await testController.click(roles.roleConfigurationNavBarSelector)
+	await testController.click(roles.roleConfigurationNavBarSelector)
 	const { data } = JSON.parse(fs.readFileSync(path.join(__dirname, "../../../data.json")));
-    await testController.typeText(roles.searchRoleSelector, data.username)
-    await testController.wait(1000)
-    await testController.click(roles.editButtonSelector)
+	await testController.typeText(roles.searchRoleSelector, data.username)
+	await testController.wait(1000)
+	await testController.click(roles.editButtonSelector)
 	await testController.click(roles.approveButtonSelector)
 	await testController.typeText(roles.searchRoleSelector, data.username, {replace: true})
-    const currentStatus = await roles.roleStatusSelector.innerText
-    await testController.expect(currentStatus).eql('APPROVED')
+	const currentStatus = await roles.roleStatusSelector.innerText
+	await testController.expect(currentStatus).eql('APPROVED')
 })
 
 
@@ -47,15 +47,15 @@ test.before(loginSuperAdminMaker)
 
 test.before(loginSuperAdminChecker)
 ("Approve a Bank Admin role whose status is PENDING", async (testController) => {
-    await testController.click(roles.roleConfigurationNavBarSelector)
+	await testController.click(roles.roleConfigurationNavBarSelector)
 	const { data } = JSON.parse(fs.readFileSync(path.join(__dirname, "../../../data.json")));
-    await testController.typeText(roles.searchRoleSelector, data.username)
-    await testController.wait(1000)
-    await testController.click(roles.editButtonSelector)
+	await testController.typeText(roles.searchRoleSelector, data.username)
+	await testController.wait(1000)
+	await testController.click(roles.editButtonSelector)
 	await testController.click(roles.approveButtonSelector)
 	await testController.typeText(roles.searchRoleSelector, data.username, {replace: true})
-    const currentStatus = await roles.roleStatusSelector.innerText
-    await testController.expect(currentStatus).eql('APPROVED')
+	const currentStatus = await roles.roleStatusSelector.innerText
+	await testController.expect(currentStatus).eql('APPROVED')
 })
 
 test.before(loginSuperAdminMaker)
@@ -68,13 +68,13 @@ test.before(loginSuperAdminMaker)
 
 test.before(loginSuperAdminChecker)
 ("Approve a Bank user role whose status is PENDING", async (testController) => {
-    await testController.click(roles.roleConfigurationNavBarSelector)
+	await testController.click(roles.roleConfigurationNavBarSelector)
 	const { data } = JSON.parse(fs.readFileSync(path.join(__dirname, "../../../data.json")));
-    await testController.typeText(roles.searchRoleSelector, data.username)
-    await testController.wait(1000)
-    await testController.click(roles.editButtonSelector)
+	await testController.typeText(roles.searchRoleSelector, data.username)
+	await testController.wait(1000)
+	await testController.click(roles.editButtonSelector)
 	await testController.click(roles.approveButtonSelector)
 	await testController.typeText(roles.searchRoleSelector, data.username, {replace: true})
-    const currentStatus = await roles.roleStatusSelector.innerText
-    await testController.expect(currentStatus).eql('APPROVED')
+	const currentStatus = await roles.roleStatusSelector.innerText
+	await testController.expect(currentStatus).eql('APPROVED')
 })
