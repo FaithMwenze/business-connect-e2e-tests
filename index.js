@@ -11,7 +11,7 @@ const createBrowserConnection = async () => {
     try{
        return  runner.src("./Tests/")
                    .browsers(['chrome'])
-                    .run()
+                    .run({disablePageCaching: true})
                     .then(failedCount => {
                         console.log('Tests failed: ' + failedCount);
                         testcafe.close();
