@@ -9,11 +9,11 @@ const roles = Roles;
 fixture `Super Admin Role module`
 	.page(LOGIN_URL)
 
-// test.before(loginSuperAdminMaker)
-// ("Login into business connect", async testController => {
-// 	const documentUrl = await testController.eval(() => document.documentURI)
-// 	await testController.expect(documentUrl).eql(DASHBOARD_URL)
-// });
+test.before(loginSuperAdminMaker)
+("Login into business connect", async testController => {
+	const documentUrl = await testController.eval(() => document.documentURI)
+	await testController.expect(documentUrl).eql(DASHBOARD_URL)
+});
 
 test.before(loginSuperAdminMaker)
 ("Create superAdmin Role", async (testController) => {
