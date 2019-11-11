@@ -1,5 +1,4 @@
 import { Selector } from "testcafe"
-import { ClientFunction } from "testcafe"
 import fs from "fs"
 
 class Roles {
@@ -48,12 +47,12 @@ class Roles {
         this.userObject["username"]= saveName;
         this.userObject["status"] = "PENDING"
 
-        const savedObject = JSON.stringify(this.userObject)
-        fs.readFile("data.json", function(err){
-            if (err) throw err
-            return savedObject
-        })
-        fs.writeFile("data.json", savedObject,  function (err) {
+        const name = {
+            data: this.userObject
+        }
+        const savedObject = JSON.stringify(name)
+
+        fs.writeFileSync("data.json", savedObject, {"flags": "w+"}, function (err) {
             if(err) throw err  
             return this.userObject  
             
