@@ -12,6 +12,8 @@ class Page {
 		this.usernameSelector = Selector('.MuiInputBase-root');
 		this.passwordSelector = Selector('#password');
 		this.loginFormSelector = Selector('.jss9 button.MuiButton-text')
+		this.profileIconSelector = Selector("button[tabindex='0']")
+        this.logoutSelector = Selector("li").withText("Logout")
 	}
 
     login = ( username, password) => (
@@ -24,6 +26,13 @@ class Page {
     )
 	loginSuperAdminMaker = () => this.login(SUPER_ADMIN_MAKER_USERNAME,SUPER_ADMIN_MAKER_PASSWORD);
 	loginSuperAdminChecker = () => this.login(SUPER_ADMIN_CHECKER_USERNAME, SUPER_ADMIN_CHECKER_PASSWORD )
+
+
+	logout = async (testController) => {
+		await testController.click(this.profileIconSelector)
+		await testController.click(this.logoutSelector)
+		await testController.wait(5000)
+	}
 
 };
 

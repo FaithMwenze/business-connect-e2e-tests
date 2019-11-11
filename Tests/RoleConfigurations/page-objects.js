@@ -17,8 +17,11 @@ class Roles {
 		this.createdRoleNameSelector= Selector("td[tabindex='2']")
 		this.searchItemSelector = Selector("tbody tr", {visibilityCheck: true}).nth(1)
 		this.editButtonSelector = Selector("button[title='update role']")
-		this.approveButtonSelector = Selector("span").withText("APPROVE")
-		this.searchStatusSelector = Selector("input[placeholder ='Enter Status...")
+        this.approveButtonSelector = Selector("span").withText("APPROVE")
+        this.rejectButtonSelector = Selector("span").withText("REJECT")
+        this.yesButtonSelector = Selector("span").withText("YES")
+        this.inputRejectSelector = Selector("input[id='phone']")
+        this.searchStatusSelector = Selector("input[placeholder ='Enter Status...")
 	}
 
     userObject = {};

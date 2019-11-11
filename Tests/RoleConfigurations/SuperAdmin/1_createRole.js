@@ -6,7 +6,7 @@ import path from 'path';
 const { DASHBOARD_URL, LOGIN_URL } = process.env
 const roles = Roles;
 
-fixture `Super Admin Role module`
+fixture `Super Admin Create Role module`
 	.page(LOGIN_URL)
 
 test.before(loginSuperAdminMaker)
