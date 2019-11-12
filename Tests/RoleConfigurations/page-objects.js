@@ -1,5 +1,5 @@
 import { Selector } from "testcafe"
-import { ClientFunction } from "testcafe"
+import fs from "fs"
 
 class Roles {
      
@@ -13,11 +13,18 @@ class Roles {
 		this.saveButtonSelector = Selector("span").withText("SAVE")
 		this.searchRoleSelector = Selector("input[placeholder='Enter Role name...']") 
 		this.roleTypeSelector = Selector("td[tabindex='1']")
+		this.roleStatusSelector = Selector("td[tabindex='3']")
 		this.createdRoleNameSelector= Selector("td[tabindex='2']")
 		this.searchItemSelector = Selector("tbody tr", {visibilityCheck: true}).nth(1)
+		this.editButtonSelector = Selector("button[title='update role']")
+        this.approveButtonSelector = Selector("span").withText("APPROVE")
+        this.rejectButtonSelector = Selector("span").withText("REJECT")
+        this.yesButtonSelector = Selector("span").withText("YES")
+        this.inputRejectSelector = Selector("input[id='phone']")
+        this.searchStatusSelector = Selector("input[placeholder ='Enter Status...")
 	}
-     
-  
+
+    userObject = {};
      
     checkPrivileges = async (testController)=>{
     	const countSelector = await this.priviledgeSelector.count
@@ -34,20 +41,43 @@ class Roles {
     	}
     	const selectedRole = await this.userDropdownSelector.value; 
     	const randomNumber =  Math.random().toString(36).substring(2, 5) + Math.random().toString(36).substring(2, 5);
-    	const randomName = randomNumber.toString()
+    	const randomName = randomNumber.toString();
     	return `${roleNames[selectedRole]}${randomName}`
     }
 
     saveRandomName = async () => {
-    	const randomName = await this.createRandomName();
-    	await ClientFunction(() => window.sessionStorage.setItem("randomName", createRandom), {
-    		dependencies: {
-    			createRandom: randomName
-    		}
-    	})();
-    	const retrieveName = await ClientFunction(() => window.sessionStorage.getItem("randomName"))();
-    	return retrieveName
+    	const saveName = await this.createRandomName();
+    	this.userObject["username"]= saveName;
+    	this.userObject["status"] = "PENDING"
+    	const name = {
+    		data: this.userObject
+    	}
+    	const savedObject = JSON.stringify(name)
+
+    	fs.writeFileSync("data.json", savedObject, {"flags": "w+"}, function (err) {
+    		if(err) throw err  
+    		return this.userObject  
+            
+    	} )
+        
+    	return this.userObject.username
+        
     }
+
+
+    createRole = async (testController, text) => {
+    	await testController.click(this.roleConfigurationNavBarSelector)
+    	await testController.click(this.addRoleButtonSelector)
+    	await testController.click(this.userDropdownSelector)
+    	await testController.click(this.dropdownSelector.withText(text))
+    	const roleName = await this.saveRandomName();
+    	await testController.typeText(this.roleNameSelector, roleName)
+    	await this.checkPrivileges(testController)
+    	await testController.click(this.saveButtonSelector)
+    	await testController.typeText(this.searchRoleSelector, roleName)
+    	return roleName
+    }
+    
 }
 
 export default new Roles()

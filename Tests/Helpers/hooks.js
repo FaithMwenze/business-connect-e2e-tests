@@ -2,7 +2,13 @@ import Pages from "../page-objects"
 
 const pages = Pages
 
-export default async function(testController) {
-	return testController.useRole(pages.loginSuperAdmin())
+const loginSuperAdminMaker =   (testController) =>  {
+	return testController.useRole(pages.loginSuperAdminMaker())
 
 } 
+
+const loginSuperAdminChecker =  (testController) => {
+	return testController.useRole(pages.loginSuperAdminChecker())
+}
+
+export {loginSuperAdminChecker, loginSuperAdminMaker}
