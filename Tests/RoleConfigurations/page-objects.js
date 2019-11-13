@@ -1,5 +1,7 @@
 import { Selector } from "testcafe"
 import fs from "fs"
+import path from 'path';
+
 
 class Roles {
      
@@ -16,12 +18,13 @@ class Roles {
 		this.roleStatusSelector = Selector("td[tabindex='3']")
 		this.createdRoleNameSelector= Selector("td[tabindex='2']")
 		this.searchItemSelector = Selector("tbody tr", {visibilityCheck: true}).nth(1)
-		this.editButtonSelector = Selector("button[title='update role']")
-        this.approveButtonSelector = Selector("span").withText("APPROVE")
-        this.rejectButtonSelector = Selector("span").withText("REJECT")
-        this.yesButtonSelector = Selector("span").withText("YES")
-        this.inputRejectSelector = Selector("input[id='phone']")
-        this.searchStatusSelector = Selector("input[placeholder ='Enter Status...")
+		this.editButtonSelector = Selector("span").withText("EDIT")
+		this.approveButtonSelector = Selector("span").withText("APPROVE")
+		this.rejectButtonSelector = Selector("span").withText("REJECT")
+		this.yesButtonSelector = Selector("span").withText("YES")
+		this.inputRejectSelector = Selector("input[id='phone']")
+		this.editCheckSelector = Selector("div").child(".checkbox")
+		this.searchStatusSelector = Selector("input[placeholder ='Enter Status...")
 	}
 
     userObject = {};
@@ -33,6 +36,12 @@ class Roles {
     	}
     }
 
+	checkEditPriviledges = async (testController) => {
+		const countSelectors = await this.editCheckSelector.count
+		for(let i=0; i< Math.min(10, countSelectors); i++){
+    		await testController.click(this.editCheckSelector.nth(i))
+    	}
+	}
     createRandomName = async() => {
     	const roleNames = {
     		Bank: 'bankUser_role',
@@ -50,7 +59,7 @@ class Roles {
     	this.userObject["username"]= saveName;
     	this.userObject["status"] = "PENDING"
     	const name = {
-    		data: this.userObject
+    		storedData: this.userObject
     	}
     	const savedObject = JSON.stringify(name)
 
@@ -76,8 +85,17 @@ class Roles {
     	await testController.click(this.saveButtonSelector)
     	await testController.typeText(this.searchRoleSelector, roleName)
     	return roleName
+	}
+	
+    editRole = async (testController) => {
+    	await testController.click(this.roleConfigurationNavBarSelector)
+    	const { storedData } = JSON.parse(fs.readFileSync(path.join(__dirname, "../../data.json")));
+    	await testController.typeText(this.searchRoleSelector, storedData.username)
+    	await testController.wait(500)
+    	await testController.click(this.editButtonSelector)
+    	await this.checkEditPriviledges(testController)
+    	await testController.click(this.editButtonSelector)
     }
-    
 }
 
 export default new Roles()
