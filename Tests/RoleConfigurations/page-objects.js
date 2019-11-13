@@ -46,7 +46,9 @@ class Roles {
     	const roleNames = {
     		Bank: 'bankUser_role',
     		Bankadmin: 'bankAdmin_role',
-    		SUPER_ADMIN: 'superAdmin_role'
+			SUPER_ADMIN: 'superAdmin_role',
+			Corporate:"corporate_role"
+			
     	}
     	const selectedRole = await this.userDropdownSelector.value; 
     	const randomNumber =  Math.random().toString(36).substring(2, 5) + Math.random().toString(36).substring(2, 5);
