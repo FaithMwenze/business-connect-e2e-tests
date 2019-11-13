@@ -13,7 +13,7 @@ class Page {
 		this.passwordSelector = Selector('#password');
 		this.loginFormSelector = Selector('.jss9 button.MuiButton-text')
 		this.profileIconSelector = Selector("button[tabindex='0']")
-        this.logoutSelector = Selector("li").withText("Logout")
+		this.logoutSelector = Selector("li").withText("Logout")
 	}
 
     login = ( username, password) => (
