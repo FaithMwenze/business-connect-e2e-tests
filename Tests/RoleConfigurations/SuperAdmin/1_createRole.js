@@ -1,12 +1,10 @@
 import { loginSuperAdminMaker,loginSuperAdminChecker } from "../../Helpers/hooks"
 import Roles from "../page-objects"
-import Pages from "../../page-objects"
 import fs from 'fs';
 import path from 'path';
 
 const { DASHBOARD_URL, LOGIN_URL } = process.env
-const roles = Roles;
-const pages = Pages;
+const roles = new Roles();
 
 fixture `Super Admin Create Role module`
 	.page(LOGIN_URL)
@@ -71,7 +69,7 @@ roleNameSet.forEach( data => {
 	test.before(async(testController) => {
 		await loginSuperAdminMaker(testController)
 		await roles.editRole(testController)
-		await pages.logout(testController)
+		await roles.logout(testController)
 	} )
 	(`Reject PENDING_EDIT  ${data.name} role successfully`, async (testController) => {
 		await loginSuperAdminChecker(testController)
