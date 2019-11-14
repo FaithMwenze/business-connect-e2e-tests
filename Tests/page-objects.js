@@ -4,7 +4,12 @@ import { Role } from 'testcafe';
 const {SUPER_ADMIN_MAKER_USERNAME,
 	SUPER_ADMIN_MAKER_PASSWORD,
 	SUPER_ADMIN_CHECKER_USERNAME,
-	SUPER_ADMIN_CHECKER_PASSWORD, LOGIN_URL} = process.env
+	SUPER_ADMIN_CHECKER_PASSWORD,
+	BANK_ADMIN_MAKER_USERNAME,
+    BANK_ADMIN_MAKER_PASSWORD,
+    BANK_ADMIN_CHECKER_USERNAME,
+    BANK_ADMIN_CHECKER_PASSWORD,
+	 LOGIN_URL} = process.env
 
 
 class Page {
@@ -26,6 +31,8 @@ class Page {
     )
 	loginSuperAdminMaker = () => this.login(SUPER_ADMIN_MAKER_USERNAME,SUPER_ADMIN_MAKER_PASSWORD);
 	loginSuperAdminChecker = () => this.login(SUPER_ADMIN_CHECKER_USERNAME, SUPER_ADMIN_CHECKER_PASSWORD )
+	loginBankAdminMaker = () => this.login(BANK_ADMIN_MAKER_USERNAME, BANK_ADMIN_MAKER_PASSWORD)
+	loginBankAdminChecker = () => this.login(BANK_ADMIN_CHECKER_USERNAME, BANK_ADMIN_CHECKER_PASSWORD)
 
 
 	logout = async (testController) => {

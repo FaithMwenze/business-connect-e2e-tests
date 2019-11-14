@@ -11,4 +11,13 @@ const loginSuperAdminChecker =  (testController) => {
 	return testController.useRole(pages.loginSuperAdminChecker())
 }
 
-export {loginSuperAdminChecker, loginSuperAdminMaker}
+const loginBankAdminMaker =   (testController) =>  {
+	return testController.useRole(pages.loginBankAdminMaker())
+
+} 
+
+const loginBankAdminChecker =  (testController) => {
+	return testController.useRole(pages.loginBankAdminChecker())
+}
+
+export {loginSuperAdminChecker, loginSuperAdminMaker, loginBankAdminMaker, loginBankAdminChecker}
