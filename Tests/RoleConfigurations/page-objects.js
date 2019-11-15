@@ -1,11 +1,14 @@
 import { Selector } from "testcafe"
+import Page from "../page-objects" 
 import fs from "fs"
 import path from 'path';
 
 
-class Roles {
+
+export default class Roles extends Page {
      
 	constructor(){
+		super()
 		this.roleConfigurationNavBarSelector = Selector("a[href='/bizcon/roles']")
 		this.addRoleButtonSelector =  Selector("span").withText("ADD ROLE");
 		this.roleNameSelector = Selector("#role-name")
@@ -46,8 +49,8 @@ class Roles {
     	const roleNames = {
     		Bank: 'bankUser_role',
     		Bankadmin: 'bankAdmin_role',
-			SUPER_ADMIN: 'superAdmin_role',
-			Corporate:"corporate_role"
+    		SUPER_ADMIN: 'superAdmin_role',
+    		Corporate:"corporate_role"
 			
     	}
     	const selectedRole = await this.userDropdownSelector.value; 
@@ -87,7 +90,7 @@ class Roles {
     	await testController.click(this.saveButtonSelector)
     	await testController.typeText(this.searchRoleSelector, roleName)
     	return roleName
-	}
+    }
 	
     editRole = async (testController) => {
     	await testController.click(this.roleConfigurationNavBarSelector)
@@ -100,5 +103,4 @@ class Roles {
     }
 }
 
-export default new Roles()
 

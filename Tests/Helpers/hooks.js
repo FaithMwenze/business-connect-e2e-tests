@@ -1,6 +1,6 @@
 import Pages from "../page-objects"
 
-const pages = Pages
+const pages = new Pages()
 
 const loginSuperAdminMaker =   (testController) =>  {
 	return testController.useRole(pages.loginSuperAdminMaker())
@@ -20,4 +20,12 @@ const loginBankAdminChecker =  (testController) => {
 	return testController.useRole(pages.loginBankAdminChecker())
 }
 
-export {loginSuperAdminChecker, loginSuperAdminMaker, loginBankAdminMaker, loginBankAdminChecker}
+const loginCorporateAdminMaker =   (testController) =>  {
+	return testController.useRole(pages.loginCorporateAdminMaker())
+
+} 
+
+const loginCorporateAdminChecker =  (testController) => {
+	return testController.useRole(pages.loginCorporateAdminChecker())
+}
+export {loginSuperAdminChecker, loginSuperAdminMaker, loginBankAdminMaker, loginBankAdminChecker, loginCorporateAdminMaker, loginCorporateAdminChecker}
