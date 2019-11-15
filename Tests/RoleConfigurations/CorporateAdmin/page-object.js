@@ -13,7 +13,7 @@ export default class Corporate extends Role {
         }
 
         saveCorporateRandomName = async () => {
-			const saveName = await this.createCorporateRandomName();
+        	const saveName = await this.createCorporateRandomName();
         	this.userObject["username"]= saveName;
         	this.userObject["status"] = "PENDING"
         	const name = {
@@ -31,15 +31,15 @@ export default class Corporate extends Role {
             
         }
            
-     async createCorporateUserRole (testController){
+        async createCorporateUserRole (testController){
         	await testController.click(this.roleConfigurationNavBarSelector)
         	await testController.click(this.addRoleButtonSelector)
-			const roleName = await this.saveCorporateRandomName()
-			await testController.typeText(this.roleNameSelector, roleName)
+        	const roleName = await this.saveCorporateRandomName()
+        	await testController.typeText(this.roleNameSelector, roleName)
         	await this.checkPrivileges(testController)
         	await testController.click(this.saveButtonSelector)
-			await testController.typeText(this.searchRoleSelector, roleName)
-			return roleName
+        	await testController.typeText(this.searchRoleSelector, roleName)
+        	return roleName
         }
 
 }
