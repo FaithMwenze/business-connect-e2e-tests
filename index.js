@@ -2,13 +2,15 @@ require('./env');
 
 const createTestCafe =  require('testcafe')
 
+global.testData = {};
+
 const createBrowserConnection = async () => {
     let testcafe = null
     const testcontroller = await createTestCafe('localhost');
     testcafe = testcontroller
     const runner = testcafe.createRunner();  
     
-    try{
+    try {
        return  runner.src("./Tests/")
                    .browsers(['chrome'])
                     .run({disablePageCaching: true})
