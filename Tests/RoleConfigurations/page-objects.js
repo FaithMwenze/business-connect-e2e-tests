@@ -1,7 +1,7 @@
 import { Selector } from "testcafe"
 import Page from "../page-objects" 
-import fs from "fs"
 import path from 'path';
+  
 
 
 
@@ -13,7 +13,7 @@ export default class Roles extends Page {
 		this.addRoleButtonSelector =  Selector("span").withText("ADD ROLE");
 		this.roleNameSelector = Selector("#role-name")
 		this.userDropdownSelector = Selector("select[class='form-control']", {visibilityCheck: true})
-		this.dropdownSelector = Selector("option")
+		this.dropdownSelector = Selector("option", {visibilityCheck: true})
 		this.priviledgeSelector = Selector("div").child('.form-check')
 		this.saveButtonSelector = Selector("span").withText("SAVE")
 		this.searchRoleSelector = Selector("input[placeholder='Enter Role name...']") 
@@ -30,7 +30,6 @@ export default class Roles extends Page {
 		this.searchStatusSelector = Selector("input[placeholder ='Enter Status...")
 	}
 
-    userObject = {};
      
     checkPrivileges = async (testController)=>{
     	const countSelector = await this.priviledgeSelector.count
@@ -57,34 +56,14 @@ export default class Roles extends Page {
     	const randomNumber =  Math.random().toString(36).substring(2, 5) + Math.random().toString(36).substring(2, 5);
     	const randomName = randomNumber.toString();
     	return `${roleNames[selectedRole]}${randomName}`
-    }
-
-    saveRandomName = async () => {
-    	const saveName = await this.createRandomName();
-    	this.userObject["username"]= saveName;
-    	this.userObject["status"] = "PENDING"
-    	const name = {
-    		storedData: this.userObject
-    	}
-    	const savedObject = JSON.stringify(name)
-
-    	fs.writeFileSync("data.json", savedObject, {"flags": "w+"}, function (err) {
-    		if(err) throw err  
-    		return this.userObject  
-            
-    	} )
-        
-    	return this.userObject.username
-        
-    }
-
-
+	}
+	
     createRole = async (testController, text) => {
     	await testController.click(this.roleConfigurationNavBarSelector)
     	await testController.click(this.addRoleButtonSelector)
     	await testController.click(this.userDropdownSelector)
     	await testController.click(this.dropdownSelector.withText(text))
-    	const roleName = await this.saveRandomName();
+    	const roleName = await this.createRandomName();
     	await testController.typeText(this.roleNameSelector, roleName)
     	await this.checkPrivileges(testController)
     	await testController.click(this.saveButtonSelector)
@@ -92,10 +71,9 @@ export default class Roles extends Page {
     	return roleName
     }
 	
-    editRole = async (testController) => {
+    editRole = async (testController, text) => {
     	await testController.click(this.roleConfigurationNavBarSelector)
-    	const { storedData } = JSON.parse(fs.readFileSync(path.join(__dirname, "../../data.json")));
-    	await testController.typeText(this.searchRoleSelector, storedData.username)
+    	await testController.typeText(this.searchRoleSelector, text)
     	await testController.wait(500)
     	await testController.click(this.editButtonSelector)
     	await this.checkEditPriviledges(testController)
