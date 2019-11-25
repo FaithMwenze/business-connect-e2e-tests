@@ -11,11 +11,9 @@ pipeline {
                 sh npm i
             }
         }
-        stage("run e2e tests"){
+        stage("e2e tests"){
             steps{
               sh "npm test"
             }
         }
     }
-
-}
