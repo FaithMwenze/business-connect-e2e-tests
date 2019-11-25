@@ -1,5 +1,6 @@
 pipeline {
-    agent {docker { image 'node:10.16.3-jessie-slim' }} 
+    agent any
+    tools {nodejs "node"} 
 
     environment {
         CHROME_BIN = '/bin/google-chrome'
