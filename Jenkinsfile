@@ -8,12 +8,12 @@ pipeline {
     stages {
         stage("install dependencies") {
             steps {
-                sh npm i
+                sh 'npm i'
             }
         }
         stage("e2e tests"){
-            steps{
-              sh "npm test"
+            steps {
+              sh 'npm test'
             }
         }
     }
