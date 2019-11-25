@@ -1,14 +1,18 @@
 pipeline {
-    agent {docker { image 'node:10.17.0-jessie-slim' }} 
+    agent any 
+    tools {nodejs, "node"}
 
     environment {
         CHROME_BIN = '/bin/google-chrome'
+        
     }
 
     stages {
         stage("install dependencies") {
             steps {
-                sh 'npm i'
+                sh "node --version"
+                sh "npm --version"
+                sh 'npm install'
             }
         }
         stage("e2e tests"){
