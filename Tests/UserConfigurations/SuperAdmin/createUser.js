@@ -1,6 +1,5 @@
-import { ClientFunction } from "testcafe"
 import UserConfiguration from "../page-objects"
-import {loginSuperAdminMaker, loginSuperAdminChecker} from "../../Helpers/hooks"
+import {loginUsers} from "../../Helpers/hooks"
 const { LOGIN_URL } = process.env
 
 const userConfiguration = new UserConfiguration()
@@ -8,37 +7,25 @@ const userConfiguration = new UserConfiguration()
 fixture `Create a user`
 .page(LOGIN_URL)
 
-const scroll = ClientFunction(() => window.scrollBy(0, 500))
+testData.CREATED_USERS = {}
 
-const userType = [ 
-    {name: "Super admin"},
-   { name: "Bank"}
+const userType = () => [ 
+     {name: "Super admin",  role: testData.CREATED_ROLES['Super Admin']},
+     { name: "Bank", role: testData.CREATED_ROLES["Bank Admin"]}
+     
+   
 ]
 
-userType.forEach( dataName => {
+userType().forEach( dataName => {
 test.before(async (testController) => {
-    await userConfiguration.createUserIntoActiveDirectory(testController)
-    await loginSuperAdminChecker(testController)
-})
-("Create a user", async(testController) => {
-    await testController.click(userConfiguration.userConfigurationNavBarSelector)
-    await testController.click(userConfiguration.addUserButtonSelector)
-    await testController.click(userConfiguration.addUserTypedropdownSelector)
-    await testController.click(userConfiguration.dropdownSelector.withText(dataName.name))
-    await testController.click(userConfiguration.userDropdownSelector)
-    await scroll()
-    await testController.click(userConfiguration.userOptionSelector.withText(name.toLowerCase()))
-
-    await testController.click(userConfiguration.roleDropdownSelector)
-    const data = Object.keys(testData.CREATED_ROLES).reduce((response, key) => {
-        response = testData.CREATED_ROLES[key]
-        return response
-    }, "")
-    await testController.click(userConfiguration.roleOptionSelector.withText(data))
-    await testController.typeText(userConfiguration.inputPhoneNumberSelector, "254729530277")
-    await testController.click(userConfiguration.saveButtonSelector)
-    await testController.typeText(userConfiguration.searchUsernameSelector,name.toLowerCase())
-    await userConfiguration.deleteUserFromActiveDirectory(testController)
-    
+    global.activeDirectoryName = await userConfiguration.createUserIntoActiveDirectory(testController)
+    await loginUsers.loginSuperAdminMaker(testController)
+})(`Create a ${dataName.name} user`, async(testController) => {
+    const roles = userType().find(r => r.name === dataName.name);
+    const user = await userConfiguration.createUser(testController, roles.name, roles.role, global.activeDirectoryName)
+    testData.CREATED_USERS[dataName.name] = user
+    await testController.expect(userConfiguration.userSelectorText.innerText).eql(user)
+    await testController.expect(userConfiguration.statusSelector.innerText).eql("PENDING")
+    await userConfiguration.deleteUserFromActiveDirectory(testController, global.activeDirectoryName)   
 })
 })

@@ -18,7 +18,7 @@ export default class Roles extends Page {
 		this.saveButtonSelector = Selector("span").withText("SAVE")
 		this.searchRoleSelector = Selector("input[placeholder='Enter Role name...']") 
 		this.roleTypeSelector = Selector("td[tabindex='1']")
-		this.roleStatusSelector = Selector("td[tabindex='3']")
+		this.roleStatusSelector = Selector("tbody tr:nth-child(1) td:nth-child(3)")
 		this.createdRoleNameSelector= Selector("td[tabindex='2']")
 		this.searchItemSelector = Selector("tbody tr", {visibilityCheck: true}).nth(1)
 		this.editButtonSelector = Selector("span").withText("EDIT")
@@ -74,7 +74,7 @@ export default class Roles extends Page {
     editRole = async (testController, text) => {
     	await testController.click(this.roleConfigurationNavBarSelector)
     	await testController.typeText(this.searchRoleSelector, text)
-    	await testController.wait(500)
+    	await testController.wait(1000)
     	await testController.click(this.editButtonSelector)
     	await this.checkEditPriviledges(testController)
     	await testController.click(this.editButtonSelector)
