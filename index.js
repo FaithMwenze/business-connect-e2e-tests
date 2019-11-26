@@ -12,7 +12,7 @@ const createBrowserConnection = async () => {
     
     try {
        return  runner.src("./Tests/")
-                   .browsers(['chrome:headless'])
+                   .browsers(['chrome'])
                     .run({disablePageCaching: true})
                     .then(failedCount => {
                         console.log('Tests failed: ' + failedCount);
