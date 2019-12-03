@@ -31,7 +31,7 @@ test.before(loginBankAdminChecker)
 	await testController.click(roles.editButtonSelector)
 	await testController.click(roles.approveButtonSelector)
 	await testController.typeText(roles.searchRoleSelector,  testData.CREATEROLE[data.name], {replace: true})
-	await testController.wait(1000)
+	await testController.wait(10000)
 	const currentStatus = await roles.roleStatusSelector.innerText
 	await testController.expect(currentStatus).eql('APPROVED')
 })
@@ -40,6 +40,7 @@ test.before(loginBankAdminMaker)
 (`Edit  ${data.name} role successfully`, async (testController) => {
 	await roles.editRole(testController,  testData.CREATEROLE[data.name])
 	await testController.typeText(roles.searchRoleSelector,  testData.CREATEROLE[data.name], {replace: true})
+	await testController.wait(10000)
 	const currentStatus = await roles.roleStatusSelector.innerText
 	await testController.expect(currentStatus).eql('PENDING_EDIT')
 
@@ -53,6 +54,7 @@ test.before(loginBankAdminChecker)
 	await testController.click(roles.editButtonSelector)
 	await testController.click(roles.approveButtonSelector)
 	await testController.typeText(roles.searchRoleSelector,  testData.CREATEROLE[data.name], {replace: true})
+	await testController.wait(10000)
 	const currentStatus = await roles.roleStatusSelector.innerText
 	await testController.expect(currentStatus).eql('APPROVED')
 })
@@ -60,7 +62,6 @@ test.before(loginBankAdminChecker)
 test.before(async(testController) => {
 	await loginBankAdminMaker(testController)
 	await roles.editRole(testController,  testData.CREATEROLE[data.name])
-	await roles.logout(testController)
 } )
 (`Reject PENDING_EDIT  ${data.name} role successfully`, async (testController) => {
 	await loginBankAdminChecker(testController)
@@ -73,7 +74,7 @@ test.before(async(testController) => {
 	await testController.typeText(roles.inputRejectSelector,"Testing Rejection")
 	await testController.click(roles.rejectButtonSelector)
 	await testController.typeText(roles.searchRoleSelector,  testData.CREATEROLE[data.name], {replace: true})
-	await testController.wait(1000)
+	await testController.wait(10000)
 	const currentStatus = await roles.roleStatusSelector.innerText
 	await testController.expect(currentStatus).eql('APPROVED')
 })

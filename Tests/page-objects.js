@@ -12,19 +12,19 @@ const {SUPER_ADMIN_MAKER_USERNAME,SUPER_ADMIN_MAKER_PASSWORD,
 
 export default class Page {
 	constructor() {
-		this.usernameSelector = Selector('.MuiInputBase-root');
-		this.passwordSelector = Selector('#password');
-		this.loginFormSelector = Selector('.jss9 button.MuiButton-text')
+		this.usernameSelector = Selector('#username').with({ visibilityCheck: true })();
+		this.passwordSelector = Selector('#password').with({ visibilityCheck: true })()
+		this.loginButtonSelector = Selector('span').withText("LOGIN")
 		this.profileIconSelector = Selector("button[tabindex='0']")
 		this.logoutSelector = Selector("li").withText("Logout")
 	}
 
     login = ( username, password) => (
     	Role(LOGIN_URL, async( testController) => {
-    		await testController
+			await testController
     			.typeText(this.usernameSelector, username)
     			.typeText(this.passwordSelector,password)
-    			.click(this.loginFormSelector)   
+    			.click(this.loginButtonSelector)   
     	}, { preserveUrl: true })
     )
 	loginSuperAdminMaker = () => this.login(SUPER_ADMIN_MAKER_USERNAME,SUPER_ADMIN_MAKER_PASSWORD);
@@ -38,7 +38,7 @@ export default class Page {
 	logout = async (testController) => {
 		await testController.click(this.profileIconSelector)
 		await testController.click(this.logoutSelector)
-		await testController.wait(5000)
+		await testController.wait(1000)
 	}
 
 };

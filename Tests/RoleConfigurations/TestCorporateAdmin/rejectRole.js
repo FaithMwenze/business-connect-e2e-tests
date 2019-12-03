@@ -12,9 +12,8 @@ test.before(async (testController) => {
 	await loginCorporateAdminMaker(testController)
 	const createName = await corporate.createCorporateUserRole(testController)
 	testData.CREATE_CORPORATE_REJECT_ROLE = createName
-	await corporate.logout(testController)
 })
-("Reject corporate role role whose status is PENDING", async (testController) => {
+("Reject corporate role  whose status is PENDING", async (testController) => {
 	await loginCorporateAdminChecker(testController)
 	await testController.click(corporate.roleConfigurationNavBarSelector)
 	await testController.typeText(corporate.searchRoleSelector,testData.CREATE_CORPORATE_REJECT_ROLE )
@@ -25,6 +24,7 @@ test.before(async (testController) => {
 	await testController.typeText(corporate.inputRejectSelector,"Testing Rejection")
 	await testController.click(corporate.rejectButtonSelector)
 	await testController.typeText(corporate.searchRoleSelector, testData.CREATE_CORPORATE_REJECT_ROLE)
+	await testController.wait(10000)
 	const currentStatus = await corporate.roleStatusSelector.innerText
 	await testController.expect(currentStatus).eql('REJECTED')
 })

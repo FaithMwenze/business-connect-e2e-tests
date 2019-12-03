@@ -3,7 +3,7 @@ import Pages from "../page-objects"
 const pages = new Pages()
 
 const loginSuperAdminMaker =   (testController) =>  {
-	return testController.useRole(pages.loginSuperAdminMaker())
+	return  testController.useRole(pages.loginSuperAdminMaker())
 
 } 
 

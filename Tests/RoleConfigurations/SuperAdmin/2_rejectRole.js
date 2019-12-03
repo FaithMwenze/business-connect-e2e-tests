@@ -20,7 +20,6 @@ roleNameSet.forEach( data => {
 		await loginSuperAdminMaker(testController)
 		const role = await roles.createRole(testController, data.name)
 		testData.CREATE_TO_REJECT[data.name] = role
-		await roles.logout(testController)
 		
 	})
 	(`Reject ${data.name} role whose status is PENDING`, async (testController) => {
@@ -34,7 +33,7 @@ roleNameSet.forEach( data => {
 		await testController.typeText(roles.inputRejectSelector,"Testing Rejection")
 		await testController.click(roles.rejectButtonSelector)
 		await testController.typeText(roles.searchRoleSelector,  testData.CREATE_TO_REJECT[data.name], {replace: true})
-		await testController.wait(500)
+		await testController.wait(10000)
 		const currentStatus = await roles.roleStatusSelector.innerText
 		await testController.expect(currentStatus).eql('REJECTED')
 	})

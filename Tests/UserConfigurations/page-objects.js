@@ -1,10 +1,10 @@
+import { ClientFunction } from "testcafe"
 import {Selector} from "testcafe"
 import faker from 'faker'
 import Roles from "../RoleConfigurations/page-objects"
  const { KEYCLOAK_USERNAME,
    KEYCLOAK_PASSWORD, KEYCLOAK_URL} = process.env
 
-global.name = faker.name.firstName()
 global.email = faker.internet.email()
 export default class UserConfiguration extends Roles {
      constructor(){
@@ -18,8 +18,11 @@ export default class UserConfiguration extends Roles {
         this.roleOptionSelector = this.roleDropdownSelector.find("option")
         this.inputPhoneNumberSelector = Selector("#phonenumber")
         this.searchUsernameSelector = Selector("input[placeholder='Enter User name...']")
+        this.searchUserStatusSelector = Selector("input[placeholder='Enter Status...']")
+       this.userSelectorText = Selector("tbody tr:nth-child(1) td:nth-child(1)")
+       this.statusSelector = Selector("tbody tr:nth-child(1) td:nth-child(5)")
         this.adminLinkSelector = Selector ("a").withText("Administration Console")
-        this.keyCloakUsernameSelector = Selector("#username")
+        this.keyCloakUsernameSelector = Selector("input[name='username']")
         this.keyCloakPasswordSelector = Selector("#password")
         this.keyCloakLoginButtonSelector = Selector("#kc-login")
         this.keyCloakDropDownSelector = Selector("h2").withText("Select realm")
@@ -36,10 +39,16 @@ export default class UserConfiguration extends Roles {
         this.confirmDeleteSelector = Selector('.btn-danger')
 
      }
+     
+     generateRandomName = () => {
+      const randomNumber =  Math.random().toString(36).substring(2, 5) + Math.random().toString(36).substring(2, 5);
+      const randomName = randomNumber.toString();
+      return `TestUser${randomName}`
+   }
 
    
      createUserIntoActiveDirectory = async(testController) => {
-         
+         const name = this.generateRandomName()
          await testController.navigateTo(KEYCLOAK_URL)
          await testController.click(this.adminLinkSelector)
          await testController.typeText(this.keyCloakUsernameSelector, KEYCLOAK_USERNAME)
@@ -51,7 +60,7 @@ export default class UserConfiguration extends Roles {
          await testController.click(this.createUserSelector)
          await testController.typeText(this.createUsernameSelector, name)
          await testController.typeText(this.createuserEmailSelector, email)
-         await testController.typeText(this.createUserFirstNameSelector, "TestUser")
+         await testController.typeText(this.createUserFirstNameSelector, "TesterUser")
          await testController.typeText(this.createUserLastNameSelector, "testUser")
          await testController.click(this.keyCloaksaveButtonSelector)
        
@@ -73,5 +82,21 @@ export default class UserConfiguration extends Roles {
       await testController.click(this.confirmDeleteSelector)
 
      }
-
+     createUser = async(testController,userType, role) => {
+      const name = this.generateRandomName()
+      const scroll = ClientFunction(() => window.scrollBy(0, 500))
+      await testController.click(this.userConfigurationNavBarSelector)
+      await testController.click(this.addUserButtonSelector)
+      await testController.click(this.addUserTypedropdownSelector)
+      await testController.click(this.dropdownSelector.withText(userType))
+      await testController.click(this.userDropdownSelector)
+      await scroll()
+      await testController.click(this.userOptionSelector.withText(name))
+      await testController.click(this.roleDropdownSelector) 
+      await testController.click(this.roleOptionSelector.withText(role))
+      await testController.typeText(this.inputPhoneNumberSelector, "254729530277")
+      await testController.click(this.saveButtonSelector)
+      await testController.typeText(this.searchUsernameSelector, name)
+      return name
+     }  
 }
