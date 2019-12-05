@@ -1,25 +1,10 @@
 pipeline {
-    agent any 
-
-    tools {nodejs "node"}
-
-    environment {
-        CHROME_BIN = '/bin/google-chrome'
-        
-    }
+    agent any
 
     stages {
-        stage("install dependencies") {
+        stage("Run end 2 end tests docker container") {
             steps {
-                sh "node --version"
-                sh "npm --version"
-                sh 'npm install'
+                sh './test.sh'
             }
         }
-        stage("e2e tests"){
-            steps {
-              sh 'npm test'
-            }
-        }
-    }
 }
