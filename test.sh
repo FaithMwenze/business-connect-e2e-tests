@@ -3,10 +3,10 @@
 set +x 
 set -o pipefail
  
-docker build -t wambui/business-connect-e2e-tests:v1.0.0 .
+sudo docker build -t wambui/business-connect-e2e-tests:v1.0.0 .
 
 sleep 10
-docker run -e LOGIN_URL \
+sudo docker run -e LOGIN_URL \
 -e SUPER_ADMIN_MAKER_USERNAME \
 -e SUPER_ADMIN_MAKER_PASSWORD \
 -e SUPER_ADMIN_CHECKER_USERNAME \
