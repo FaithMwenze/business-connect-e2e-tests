@@ -3,7 +3,8 @@
 set +x 
 set -o pipefail
  
-sudo docker build -t wambui/business-connect-e2e-tests:v1.0.0 .
+sudo docker build -t wambui/business-connect-e2e-tests:v1.0.0 --build-arg HTTP_PROXY=http://192.168.204.70:8080 
+--build-arg HTTPS_PROXY=http://192.168.204.70:8080 .
 
 sleep 10
 sudo docker run -e LOGIN_URL \
