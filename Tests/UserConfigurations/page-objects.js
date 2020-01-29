@@ -47,7 +47,8 @@ export default class UserConfiguration extends Roles {
         this.keyCloakSearchUserSelector = Selector("input[placeholder='Search...']")
         this.deleteUserInKeyCloakSelector = Selector("td").withText('Delete')
         this.confirmDeleteSelector = Selector('.btn-danger')
-
+        this.rejectuserSelector = Selector('#phone[value=""]')
+        this.userdoesNotExistSelector = Selector('span').withText("this username doesn't exist")
 
      }
      
@@ -109,6 +110,14 @@ export default class UserConfiguration extends Roles {
       await testController.typeText(this.searchUsernameSelector, name)
       return name
      }
+
+     editUser = async(testController, createdUser)   => {
+      await testController.click(this.userConfigurationNavBarSelector)
+      await testController.typeText(this.searchUsernameSelector, createdUser)
+      await testController.wait(1000)
+      await testController.click(this.editButtonSelector)
+      await testController.click(this.editButtonSelector)
+     } 
 
      createCorporateAdmin = async(testController, role) => {
        const name = this.generateRandomName()

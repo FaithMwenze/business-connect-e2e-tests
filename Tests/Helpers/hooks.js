@@ -8,7 +8,8 @@ const loginUsers = {
  loginBankAdminChecker(testController){return testController.useRole(pages.loginBankAdminChecker())},
  loginCorporateAdminMaker(testController){return testController.useRole(pages.loginCorporateAdminMaker())},
  loginCorporateAdminChecker(testController){return testController.useRole(pages.loginCorporateAdminChecker())},
- loginBankUserMaker(testController){return testController.useRole(pages.loginBankUserMaker())}
+ loginBankUserMaker(testController){return testController.useRole(pages.loginBankUserMaker())},
+ loginBankUserChecker(testController){return testController.useRole(pages.loginBankUserChecker())}
 }
 
 export { loginUsers }
