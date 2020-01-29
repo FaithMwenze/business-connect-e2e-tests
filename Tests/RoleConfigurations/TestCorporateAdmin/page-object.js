@@ -6,7 +6,7 @@ export default class Corporate extends Role {
 	   super()
 	}
 
-        createCorporateRandomName = async() => { 
+        createCorporateRandomName = () => { 
         	const randomNumber =  Math.random().toString(36).substring(2, 5) + Math.random().toString(36).substring(2, 5);
         	const randomName = randomNumber.toString();
         	return `corporateUser_role${randomName}`
@@ -16,7 +16,7 @@ export default class Corporate extends Role {
         async createCorporateUserRole (testController){
         	await testController.click(this.roleConfigurationNavBarSelector)
         	await testController.click(this.addRoleButtonSelector)
-        	const roleName = await this.createCorporateRandomName()
+        	const roleName = this.createCorporateRandomName()
         	await testController.typeText(this.roleNameSelector, roleName)
         	await this.checkPrivileges(testController)
         	await testController.click(this.saveButtonSelector)
