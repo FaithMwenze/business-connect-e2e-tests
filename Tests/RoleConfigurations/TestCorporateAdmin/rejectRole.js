@@ -23,7 +23,7 @@ test.before(async (testController) => {
 	await testController.click(corporate.yesButtonSelector)
 	await testController.typeText(corporate.inputRejectSelector,"Testing Rejection")
 	await testController.click(corporate.rejectButtonSelector)
-	await testController.typeText(corporate.searchRoleSelector, testData.CREATE_CORPORATE_REJECT_ROLE)
+	await testController.typeText(corporate.searchRoleSelector, testData.CREATE_CORPORATE_REJECT_ROLE, {replace: true})
 	await testController.wait(10000)
 	const currentStatus = await corporate.roleStatusSelector.innerText
 	await testController.expect(currentStatus).eql('REJECTED')
