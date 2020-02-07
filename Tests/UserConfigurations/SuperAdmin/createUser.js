@@ -11,7 +11,7 @@ testData.CREATED_USERS = {}
 
 const userType = () => [ 
      {name: "Super admin",  role: testData.CREATED_ROLES['Super Admin']},
-    //  { name: "Bank", role: testData.CREATED_ROLES["Bank"]}
+     { name: "Bank", role: testData.CREATED_ROLES["Bank"]}
      
    
 ]
