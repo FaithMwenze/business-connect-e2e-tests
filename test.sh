@@ -28,7 +28,7 @@ sudo docker run --env LOGIN_URL=$LOGIN_URL \
 --env KEYCLOAK_PASSWORD=$KEYCLOAK_PASSWORD \
 --env KEYCLOAK_URL=$KEYCLOAK_URL \
 --network='host' \
-wambui/business-connect-e2e-tests:v1.0.2 --proxy 192.168.204.70:8080 --proxy-bypass 192.168.205.44:8090
+wambui/business-connect-e2e-tests:v1.0.2 --proxy 192.168.204.70:8080 --proxy-bypass http://192.168.205.44:8090/auth/
 
 
 exit $?
