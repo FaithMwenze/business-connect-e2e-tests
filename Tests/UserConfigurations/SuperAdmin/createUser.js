@@ -1,6 +1,6 @@
 import UserConfiguration from "../page-objects"
 import {loginUsers} from "../../Helpers/hooks"
-import { AsyncResource } from "async_hooks";
+import { RequestMock } from "testcafe";
 const { LOGIN_URL } = process.env
 
 const userConfiguration = new UserConfiguration()
@@ -11,22 +11,33 @@ testData.CREATED_USERS = {}
 
 const userType = () => [ 
      {name: "Super admin",  role: testData.CREATED_ROLES['Super Admin']},
-     { name: "Bank", role: testData.CREATED_ROLES["Bank"]}
-     
-   
+     { name: "Bank", role: testData.CREATED_ROLES["Bank User"]}  
 ]
 
+var randomName  = userConfiguration.generateRandomName()
+
+const mock = RequestMock()
+.onRequestTo('http://192.168.204.30:8082/imb-uat/api/ldap-users?size=100')
+.respond({"data":[{"accountName":`${randomName}`,"firstName":"testuser","lastName":"testUser","email":"testuser@email.com"}]}, 
+200, {
+    'access-control-allow-credentials': true,
+    'access-control-allow-origin': 'http://192.168.204.21:8484'
+}
+)
+
+
 userType().forEach( dataName => {
-test.before(async (testController) => {
-    global.activeDirectoryName = await userConfiguration.createUserIntoActiveDirectory(testController)
-    await loginUsers.loginSuperAdminMaker(testController)
-})(`Create a ${dataName.name} user`, async(testController) => {
+test.requestHooks(mock)
+.before(async (testController) => {
+    await loginUsers.loginSuperAdminMaker(testController) 
+})
+(`Create a ${dataName.name} user`, async(testController) => {
     const roles = userType().find(r => r.name === dataName.name);
-    const user = await userConfiguration.createUser(testController, roles.name, roles.role, global.activeDirectoryName)
+    const user = await userConfiguration.createUser(testController, roles.name, roles.role, randomName)
     testData.CREATED_USERS[dataName.name] = user
     await testController.expect(userConfiguration.userSelectorText.innerText).eql(user)
     await testController.expect(userConfiguration.statusSelector.innerText).eql("PENDING")
-    await userConfiguration.deleteUserFromActiveDirectory(testController, global.activeDirectoryName)   
+
 })
 test.before(loginUsers.loginSuperAdminChecker)
 (`Approve a ${dataName.name} user`, async (testController) => {
