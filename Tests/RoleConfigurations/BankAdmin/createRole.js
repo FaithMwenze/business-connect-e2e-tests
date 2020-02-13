@@ -3,14 +3,11 @@ import {loginUsers} from "../../Helpers/hooks"
 
 const { LOGIN_URL }= process.env 
 
-
+global.testData = {}
 const roles = new Roles();
-console.log("first test cases")
 fixture ` Bank Admin Create Role`
 	.page(LOGIN_URL)
 
-
-console.log("made connection to first page")
 const roleNameSet = [
     {name: "Corporate", type: "Corporate" },
     {name: "Bank", type:"Bank" }	
@@ -22,7 +19,6 @@ roleNameSet.forEach( data => {
 	test.before(
 		loginUsers.loginBankAdminMaker)
 (`Create ${data.name} role`, async (testController) => {
-	console.log("I am here")
 	const createdRoleName = await roles.createRole(testController, data.name)
 	testData.CREATEROLE[data.name] = createdRoleName;
 	await testController.expect(roles.createdRoleNameSelector.innerText).eql(createdRoleName)

@@ -8,6 +8,7 @@ const {SUPER_ADMIN_MAKER_USERNAME,SUPER_ADMIN_MAKER_PASSWORD,
 	CORPORATE_ADMIN_MAKER_USERNAME,CORPORATE_ADMIN_MAKER_PASSWORD,
 	CORPORATE_ADMIN_CHECKER_USERNAME,CORPORATE_ADMIN_CHECKER_PASSWORD,
 	BANK_USER_MAKER_USERNAME, BANK_USER_MAKER_PASSWORD,
+	BANK_USER_CHECKER_USERNAME, BANK_USER_CHECKER_PASSWORD,
 	 LOGIN_URL} = process.env
 
 
@@ -28,7 +29,8 @@ export default class Page {
     			.typeText(this.usernameSelector, username)
     			.typeText(this.passwordSelector,password)
 				.click(this.loginButtonSelector)
-    	}, { preserveUrl: true })
+		        .wait(500)
+		}, { preserveUrl: true })
     )
 	loginSuperAdminMaker = () => this.login(SUPER_ADMIN_MAKER_USERNAME,SUPER_ADMIN_MAKER_PASSWORD);
 	loginSuperAdminChecker = () => this.login(SUPER_ADMIN_CHECKER_USERNAME, SUPER_ADMIN_CHECKER_PASSWORD )
@@ -37,6 +39,7 @@ export default class Page {
 	loginCorporateAdminMaker=() => this.login(CORPORATE_ADMIN_MAKER_USERNAME, CORPORATE_ADMIN_MAKER_PASSWORD)
 	loginCorporateAdminChecker = () => this.login(CORPORATE_ADMIN_CHECKER_USERNAME, CORPORATE_ADMIN_CHECKER_PASSWORD)
 	loginBankUserMaker = () =>  this.login(BANK_USER_MAKER_USERNAME, BANK_USER_MAKER_PASSWORD)
+	loginBankUserChecker = () => this.login(BANK_USER_CHECKER_USERNAME, BANK_USER_CHECKER_PASSWORD)
 
 
 	logout = async (testController) => {
