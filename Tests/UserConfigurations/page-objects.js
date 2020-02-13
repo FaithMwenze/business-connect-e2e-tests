@@ -54,7 +54,6 @@ export default class UserConfiguration extends Roles {
       await testController.click(this.roleOptionSelector.withText(role))
       await testController.typeText(this.inputPhoneNumberSelector, "254729530277")
       await testController.click(this.saveButtonSelector)
-      await testController.typeText(this.searchUsernameSelector, randomName)
       return randomName
      }
 

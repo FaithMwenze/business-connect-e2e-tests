@@ -11,7 +11,8 @@ testData.CREATED_USERS = {}
 
 const userType = () => [ 
      {name: "Super admin",  role: testData.CREATED_ROLES['Super Admin']},
-     { name: "Bank", role: testData.CREATED_ROLES["Bank User"]}  
+     { name: "Bank", role: testData.CREATED_ROLES["Bank User"]} 
+ 
 ]
 
 var randomName  = userConfiguration.generateRandomName()
@@ -35,7 +36,9 @@ test.requestHooks(mock)
     const roles = userType().find(r => r.name === dataName.name);
     const user = await userConfiguration.createUser(testController, roles.name, roles.role, randomName)
     testData.CREATED_USERS[dataName.name] = user
+    await testController.typeText(userConfiguration.searchUsernameSelector, randomName, {replace: true})
     await testController.expect(userConfiguration.userSelectorText.innerText).eql(user)
+    await testController.wait(2000)
     await testController.expect(userConfiguration.statusSelector.innerText).eql("PENDING")
 
 })
@@ -48,8 +51,10 @@ test.before(loginUsers.loginSuperAdminChecker)
     await testController.click(userConfiguration.editButtonSelector)
     await testController.click(userConfiguration.approveButtonSelector)
     await testController.typeText(userConfiguration.searchUsernameSelector, createdUser, {replace: true})
+    await testController.wait(2000)
     await testController.expect(userConfiguration.statusSelector.innerText).eql('APPROVED')
 })
+
 test.before(async(testController) => { await loginUsers.loginSuperAdminMaker(testController)})
 (`edit an approved ${dataName.name} user`, async(testController, ) => {
     await userConfiguration.editUser(testController, testData.CREATED_USERS[dataName.name])
