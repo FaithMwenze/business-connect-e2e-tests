@@ -32,13 +32,15 @@ export default class UserConfiguration extends Roles {
         this.confirmDeleteSelector = Selector('.btn-danger')
         this.rejectuserSelector = Selector('#phone[value=""]')
         this.userdoesNotExistSelector = Selector('span').withText("this username doesn't exist")
-        this.saveCorporateAdminSelector = Selector(".jss1224 button span").withText("SAVE")
+        this.saveCorporateAdminSelector = Selector("section:nth-child(2) div:nth-child(1) div:nth-child(1) div:nth-child(1) div:nth-child(1) div:nth-child(2)")
      }
-     
-     generateRandomName = () => {
+    
+
+     generateRandomName = (userType) => {
+       
       const randomNumber =  Math.random().toString(36).substring(2, 5) + Math.random().toString(36).substring(2, 5);
       const randomName = randomNumber.toString();
-      return `createdItems${randomName}`
+      return `${userType}${randomName}`
    }
      createUser = async(testController,userType, role, randomName) => {
       const scroll = ClientFunction(() => window.scroll(0, 1500))
@@ -85,6 +87,15 @@ export default class UserConfiguration extends Roles {
        await testController.click(this.saveButtonSelector)
        await testController.typeText(this.searchUsernameSelector, name)
        return name
+     }
+
+     editCorporateAdmin   = async(testController, createdCorporateAdmin) => {
+      await testController.click(this.corporateNavbarSelector)
+      await testController.click(this.corporateAdminTabSelector)
+      await testController.typeText(this.searchUsernameSelector, createdCorporateAdmin)
+      await testController.wait(500)
+      await testController.click(this.editButtonSelector)
+      await testController.click(this.saveCorporateAdminSelector.find("button:nth-child(1)"))
      }
   
 }
