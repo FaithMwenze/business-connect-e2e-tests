@@ -18,10 +18,7 @@ pipeline {
         CORPORATE_ADMIN_MAKER_USERNAME=credentials('corporate-admin-maker-username')
         CORPORATE_ADMIN_MAKER_PASSWORD=credentials('corporate-admin-maker-password')
         CORPORATE_ADMIN_CHECKER_USERNAME=credentials('corporate-admin-checker-username')
-        CORPORATE_ADMIN_CHECKER_PASSWORD=credentials('corporate-admin-checker-password')
-        KEYCLOAK_USERNAME=credentials('keycloak-username')
-        KEYCLOAK_PASSWORD=credentials('keycloak-password')
-        KEYCLOAK_URL=credentials('keycloak-url')     
+        CORPORATE_ADMIN_CHECKER_PASSWORD=credentials('corporate-admin-checker-password')    
     }  
     stages {
         stage("Run end 2 end tests inside docker container") {       
