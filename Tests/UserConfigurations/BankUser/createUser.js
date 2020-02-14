@@ -1,12 +1,13 @@
 import { loginUsers } from "../../Helpers/hooks"
 import UserConfiguration from "../page-objects";
-import { debug } from "util";
+const { LOGIN_URL } = process.env
 
 const {LOGIN_URL} = process.env
 
 const userConfiguration = new UserConfiguration()
 
 fixture `create a corporate Admin`
+.page(LOGIN_URL)
 
 testData.CORPORATEADMINUSER = {}
 const createdRoles =  () =>  testData.CREATEROLE['Corporate']
