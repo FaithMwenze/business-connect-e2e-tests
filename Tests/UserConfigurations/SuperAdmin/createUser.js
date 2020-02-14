@@ -1,8 +1,7 @@
 import UserConfiguration from "../page-objects"
 import {loginUsers} from "../../Helpers/hooks"
 import { RequestMock } from "testcafe";
-import { AsyncResource } from "async_hooks";
-const { LOGIN_URL } = process.env
+
 
 const userConfiguration = new UserConfiguration()
      
@@ -17,10 +16,6 @@ const userType = () => [
 ]
 
 
-
-
-
-
 userType().forEach( dataName => {
     var randomName  = userConfiguration.generateRandomName(dataName.name)
     var mock = RequestMock()
@@ -29,8 +24,7 @@ userType().forEach( dataName => {
         200, {
             'access-control-allow-credentials': true,
             'access-control-allow-origin': 'http://192.168.204.21:8484'
-        }
-        )
+        })
 test.requestHooks(mock)
 .before(async (testController) => {
     await loginUsers.loginSuperAdminMaker(testController) 
@@ -91,25 +85,6 @@ test.before( async (testController) => {
     await testController.typeText(userConfiguration.searchUsernameSelector, testData.CREATED_USERS[dataName.name], {replace: true})
     await testController.expect(userConfiguration.statusSelector.innerText).eql('APPROVED')
 
-})
-test.requestHooks(mock)
-.before( async(testController) => {
-    const roles = userType().find(r => r.name === dataName.name);
-    await loginUsers.loginSuperAdminMaker(testController)
-    global.rejectUser = await  userConfiguration.createUser(testController, roles.name, roles.role, randomName)
-})
-(`Reject PENDING ${dataName.name} user`, async(testController) => {
-    await loginUsers.loginSuperAdminChecker(testController)
-    await testController.click(userConfiguration.userConfigurationNavBarSelector)
-    await testController.typeText(userConfiguration.searchUsernameSelector, rejectUser)
-    await testController.wait(1000)
-    await testController.click(userConfiguration.editButtonSelector)
-    await testController.click(userConfiguration.rejectButtonSelector)
-    await testController.click(userConfiguration.yesButtonSelector)
-    await testController.typeText(userConfiguration.rejectuserSelector,"Testing Rejection")
-    await testController.click(userConfiguration.rejectButtonSelector)
-    await testController.typeText(userConfiguration.searchUsernameSelector,  rejectUser, {replace: true})
-    await testController.wait(500)
 })
 })
 
