@@ -6,7 +6,7 @@ const { LOGIN_URL } = process.env
 
 const roles = new Roles()
 fixture `Super Admin Reject Role Module`
-	.page(LOGIN_URL)
+
 
 const roleNameSet = [
 	{name: "Super Admin"},

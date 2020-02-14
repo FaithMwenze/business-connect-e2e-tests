@@ -6,7 +6,6 @@ const corporate = new Corporate();
 
 
 fixture ` Corporate Admin Create Role`
-	.page(LOGIN_URL)
 
 testData.CREATE_CORPORATE_USER_ROLE = {}
 test.before(loginUsers.loginCorporateAdminMaker)
