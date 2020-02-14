@@ -6,6 +6,7 @@ const { LOGIN_URL } = process.env
 
 const roles = new Roles()
 fixture `Bank Admin Reject Role Module`
+	.page(LOGIN_URL)
 
 const roleNameSet = [
 	{name: "Corporate"},

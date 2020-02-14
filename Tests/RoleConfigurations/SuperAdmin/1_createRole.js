@@ -6,6 +6,7 @@ const { DASHBOARD_URL, LOGIN_URL } = process.env
 const roles = new Roles();
 
 fixture `Super Admin Create Role module`
+	.page(LOGIN_URL)
 
 const roleNameSet = [
 	{name: "Super Admin", type: "SUPER_ADMIN" },

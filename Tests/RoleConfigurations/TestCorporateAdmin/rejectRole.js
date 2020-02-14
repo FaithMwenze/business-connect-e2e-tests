@@ -5,6 +5,7 @@ const { LOGIN_URL } = process.env
 
 const corporate = new Corporate()
 fixture `Corporate Admin Reject Role Module`
+	.page(LOGIN_URL)
 
 
 test.before(async (testController) => {

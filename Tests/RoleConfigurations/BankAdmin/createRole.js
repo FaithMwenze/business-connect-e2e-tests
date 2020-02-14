@@ -6,6 +6,7 @@ const { LOGIN_URL }= process.env
 global.testData = {}
 const roles = new Roles();
 fixture ` Bank Admin Create Role`
+	.page(LOGIN_URL)
 
 const roleNameSet = [
     {name: "Corporate", type: "Corporate" },
