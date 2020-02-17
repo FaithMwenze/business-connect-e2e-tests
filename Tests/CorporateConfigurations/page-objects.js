@@ -23,6 +23,17 @@ export default class  CorporateConfiguration extends Page {
 
     }
     
+    createCorporate = async(testController, corporateName, cif) => {
+      await testController.click(this.corporateNavbarSelector)
+      await testController.click(this.AddCorporateSelector)
+      await testController.typeText(this.typeCifSelector, cif)
+      await testController.click(this.fetchCifSelector)
+      await testController.wait(1000)
+      await testController.click(this.sectorDropDownSelector)
+      await testController.click(this.sectorDropDownSelector.find("option").nth(2))
+      await testController.click(this.saveButtonSelector)
+      await testController.typeText(this.searchCorporateNameSelector, corporateName)
+    }
 
     editCorporate   = async(testController, corporateName) => {
       await testController.click(this.corporateNavbarSelector)
