@@ -36,7 +36,7 @@ roleNameSet.forEach( data => {
 		await testController.wait(1000)
 		await testController.click(roles.editButtonSelector)
 		await testController.click(roles.approveButtonSelector)
-		await testController.typeText(roles.searchRoleSelector, testData.CREATED_ROLES[data.name], {replace: true})
+		await testController.typeText(roles.searchRoleSelector, testData.SUPERADMIN_CREATED_ROLES[data.name], {replace: true})
 		await testController.wait(10000)
 		const currentStatus = await roles.roleStatusSelector.innerText
 		await testController.expect(currentStatus).eql('APPROVED')
