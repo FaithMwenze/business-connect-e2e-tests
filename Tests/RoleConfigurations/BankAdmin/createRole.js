@@ -36,7 +36,7 @@ test.before(loginUsers.loginBankAdminChecker)
 
 test.before(loginUsers.loginBankAdminMaker)
 (`Edit  ${data.name} role successfully`, async (testController) => {
-	await roles.editRole(testController,  testData.CREATEROLE[data.name])
+	await roles.editRole(testController,  testData.BANKADMIN_CREATEROLE[data.name])
 	await testController.typeText(roles.searchRoleSelector,  testData.BANKADMIN_CREATEROLE[data.name], {replace: true})
 	await testController.wait(10000)
 	const currentStatus = await roles.roleStatusSelector.innerText
