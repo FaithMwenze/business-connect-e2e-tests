@@ -7,7 +7,6 @@ const userConfiguration = new UserConfiguration()
 fixture `create a corporate Admin`
     .page(LOGIN_URL)
 
-testData.CORPORATE_ADMIN_USER = {}
 const createdRoles =  () =>  testData.CREATEROLE['Corporate']
 
 const corporateType = () =>  [

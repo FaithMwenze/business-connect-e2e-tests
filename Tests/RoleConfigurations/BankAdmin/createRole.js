@@ -1,9 +1,7 @@
 import Roles from "../page-objects"
 import {loginUsers} from "../../Helpers/hooks"
-
 const { LOGIN_URL }= process.env 
 
-global.testData = {}
 const roles = new Roles();
 fixture ` Bank Admin Create Role`
 	.page(LOGIN_URL)
@@ -13,14 +11,12 @@ const roleNameSet = [
     {name: "Bank", type:"Bank" }	
 ]
 
-testData.CREATEROLE = {}
-
 roleNameSet.forEach( data => {
 	test.before(
 		loginUsers.loginBankAdminMaker)
 (`Create ${data.name} role`, async (testController) => {
 	const createdRoleName = await roles.createRole(testController, data.name)
-	testData.CREATEROLE[data.name] = createdRoleName;
+	testData.BANKADMIN_CREATEROLE[data.name] = createdRoleName;
 	await testController.expect(roles.createdRoleNameSelector.innerText).eql(createdRoleName)
 	await testController.expect(roles.roleTypeSelector.innerText).eql(data.type)
 	await testController.expect(roles.roleStatusSelector.innerText).eql("PENDING")	

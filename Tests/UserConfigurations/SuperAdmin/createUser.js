@@ -7,7 +7,6 @@ const userConfiguration = new UserConfiguration()
      
 fixture `Create a user`
 
-testData.CREATED_USERS = {}
 
 const userType = () => [ 
      {name: "Super admin",  role: testData.CREATED_ROLES['Super Admin']},
