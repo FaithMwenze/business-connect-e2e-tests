@@ -1,6 +1,5 @@
 import { Selector } from "testcafe"
 import Page from "../page-objects" 
-import path from 'path';
   
 
 
