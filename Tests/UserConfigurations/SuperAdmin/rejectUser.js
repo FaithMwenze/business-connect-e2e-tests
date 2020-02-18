@@ -7,8 +7,8 @@ const userConfiguration  = new UserConfiguration()
 fixture `Reject user`
 
 const userType = () => [ 
-    {name: "Super admin",  role: testData.CREATED_ROLES['Super Admin']},
-    { name: "Bank", role: testData.CREATED_ROLES["Bank User"]} 
+    {name: "Super admin",  role: testData.SUPERADMIN_CREATED_ROLES['Super Admin']},
+    { name: "Bank", role: testData.SUPERADMIN_CREATED_ROLES["Bank User"]} 
 
 ]
 
