@@ -24,11 +24,11 @@ roleNameSet.forEach( data => {
 test.before(loginUsers.loginBankAdminChecker)
 (`Approve a  ${data.name} role whose status is PENDING`, async (testController) => {
 	await testController.click(roles.roleConfigurationNavBarSelector)
-	await testController.typeText(roles.searchRoleSelector, testData.CREATEROLE[data.name])
+	await testController.typeText(roles.searchRoleSelector, testData.BANKADMIN_CREATEROLE[data.name])
 	await testController.wait(1000)
 	await testController.click(roles.editButtonSelector)
 	await testController.click(roles.approveButtonSelector)
-	await testController.typeText(roles.searchRoleSelector,  testData.CREATEROLE[data.name], {replace: true})
+	await testController.typeText(roles.searchRoleSelector,  testData.BANKADMIN_CREATEROLE[data.name], {replace: true})
 	await testController.wait(10000)
 	const currentStatus = await roles.roleStatusSelector.innerText
 	await testController.expect(currentStatus).eql('APPROVED')
@@ -37,7 +37,7 @@ test.before(loginUsers.loginBankAdminChecker)
 test.before(loginUsers.loginBankAdminMaker)
 (`Edit  ${data.name} role successfully`, async (testController) => {
 	await roles.editRole(testController,  testData.CREATEROLE[data.name])
-	await testController.typeText(roles.searchRoleSelector,  testData.CREATEROLE[data.name], {replace: true})
+	await testController.typeText(roles.searchRoleSelector,  testData.BANKADMIN_CREATEROLE[data.name], {replace: true})
 	await testController.wait(10000)
 	const currentStatus = await roles.roleStatusSelector.innerText
 	await testController.expect(currentStatus).eql('PENDING_EDIT')
@@ -47,11 +47,11 @@ test.before(loginUsers.loginBankAdminMaker)
 test.before(loginUsers.loginBankAdminChecker)
 (`Approve PENDING_EDIT  ${data.name} role successfully`, async (testController) => {
 	await testController.click(roles.roleConfigurationNavBarSelector)
-	await testController.typeText(roles.searchRoleSelector, testData.CREATEROLE[data.name])
+	await testController.typeText(roles.searchRoleSelector, testData.BANKADMIN_CREATEROLE[data.name])
 	await testController.wait(1000)
 	await testController.click(roles.editButtonSelector)
 	await testController.click(roles.approveButtonSelector)
-	await testController.typeText(roles.searchRoleSelector,  testData.CREATEROLE[data.name], {replace: true})
+	await testController.typeText(roles.searchRoleSelector,  testData.BANKADMIN_CREATEROLE[data.name], {replace: true})
 	await testController.wait(10000)
 	const currentStatus = await roles.roleStatusSelector.innerText
 	await testController.expect(currentStatus).eql('APPROVED')
@@ -64,14 +64,14 @@ test.before(async(testController) => {
 (`Reject PENDING_EDIT  ${data.name} role successfully`, async (testController) => {
 	await loginUsers.loginBankAdminChecker(testController)
 	await testController.click(roles.roleConfigurationNavBarSelector)
-	await testController.typeText(roles.searchRoleSelector,  testData.CREATEROLE[data.name])
+	await testController.typeText(roles.searchRoleSelector,  testData.BANKADMIN_CREATEROLE[data.name])
 	await testController.wait(1000)
 	await testController.click(roles.editButtonSelector)
 	await testController.click(roles.rejectButtonSelector)
 	await testController.click(roles.yesButtonSelector)
 	await testController.typeText(roles.inputRejectSelector,"Testing Rejection")
 	await testController.click(roles.rejectButtonSelector)
-	await testController.typeText(roles.searchRoleSelector,  testData.CREATEROLE[data.name], {replace: true})
+	await testController.typeText(roles.searchRoleSelector,  testData.BANKADMIN_CREATEROLE[data.name], {replace: true})
 	await testController.wait(10000)
 	const currentStatus = await roles.roleStatusSelector.innerText
 	await testController.expect(currentStatus).eql('APPROVED')
