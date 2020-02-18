@@ -9,7 +9,8 @@ export default class UserConfiguration extends Roles {
         this.addUserButtonSelector = Selector("span").withText("ADD USER")
         this.addCorporateAdminButtonSelector = Selector("span").withText("ADD CORPORATE ADMIN")
         this.selectCorporateDropdownSelector = Selector(".MuiGrid-root:nth-child(1) .form-control")
-        this.selectRolesSelector = Selector(".MuiGrid-root:nth-child(2) > .form-control")
+        this.selectCorporateTypeDropdownSelector = Selector(".MuiGrid-root:nth-child(2) > .form-control")
+        this.selectRolesSelector   = Selector(".MuiGrid-root:nth-child(3) > .form-control")
         this.addUserTypedropdownSelector = Selector("center .form-control") 
         this.corporateAdminTabSelector = Selector("span").withText("CORPORATE ADMINS")
         this.corporateAdminUsernameSelector = Selector("#user-name")
@@ -67,15 +68,17 @@ export default class UserConfiguration extends Roles {
       await testController.click(this.editButtonSelector)
      } 
 
-     createCorporateAdmin = async(testController, role) => {
+     createCorporateAdmin = async(testController, role, corporateType) => {
       const randomEmail = faker.internet.email()
-       const name = this.generateRandomName()
+       const name = this.generateRandomName(corporateType)
        const scroll = ClientFunction(() => window.scroll(0, 2000))
        await testController.click(this.corporateNavbarSelector)
        await testController.click(this.corporateAdminTabSelector)
        await testController.click(this.addCorporateAdminButtonSelector)
        await testController.click(this.selectCorporateDropdownSelector)
        await testController.click(this.selectCorporateDropdownSelector.child(1))
+       await testController.click(this.selectCorporateTypeDropdownSelector)
+       await testController.click(this.selectCorporateTypeDropdownSelector.find("option").withText(corporateType))
        await testController.click(this.selectRolesSelector)
        scroll()
        await testController.click(this.selectRolesSelector.find("option").withText(role))

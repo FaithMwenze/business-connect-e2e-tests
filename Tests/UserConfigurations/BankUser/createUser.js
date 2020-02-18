@@ -10,10 +10,17 @@ fixture `create a corporate Admin`
 testData.CORPORATE_ADMIN_USER = {}
 const createdRoles =  () =>  testData.CREATEROLE['Corporate']
 
+const corporateType = () =>  [
+   { type: "Lite" },
+   {type: "Custom" }
+]
+
+corporateType().forEach( data => {
+    
 test.before( async(testController) => {
     await loginUsers.loginBankUserMaker(testController)
 })("Create a corporate Admin", async testController => {
-   const createdUser = await  userConfiguration.createCorporateAdmin(testController, createdRoles()) 
+   const createdUser = await  userConfiguration.createCorporateAdmin(testController, createdRoles(), data.type) 
    testData.CORPORATE_ADMIN_USER =  createdUser
    await testController.expect(userConfiguration.statusSelector.innerText).eql('PENDING')
 })
@@ -68,3 +75,5 @@ test.before(loginUsers.loginBankUserChecker)
      await testController.wait(2000)
     await testController.expect(userConfiguration.statusSelector.innerText).eql('APPROVED')
  })
+
+})
