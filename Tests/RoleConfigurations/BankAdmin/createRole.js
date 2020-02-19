@@ -59,7 +59,7 @@ test.before(loginUsers.loginBankAdminChecker)
 
 test.before(async(testController) => {
 	await loginUsers.loginBankAdminMaker(testController)
-	await roles.editRole(testController,  testData.CREATEROLE[data.name])
+	await roles.editRole(testController,  testData.BANKADMIN_CREATEROLE[data.name])
 } )
 (`Reject PENDING_EDIT  ${data.name} role successfully`, async (testController) => {
 	await loginUsers.loginBankAdminChecker(testController)

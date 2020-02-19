@@ -18,13 +18,13 @@ corporateType().forEach( data => {
     
 test.before( async(testController) => {
     await loginUsers.loginBankUserMaker(testController)
-})("Create a corporate Admin", async testController => {
+})(`Create a  ${data.type} corporate Admin`, async testController => {
    const createdUser = await  userConfiguration.createCorporateAdmin(testController, createdRoles(), data.type) 
    testData.CORPORATE_ADMIN_USER =  createdUser
    await testController.expect(userConfiguration.statusSelector.innerText).eql('PENDING')
 })
 test.before(loginUsers.loginBankUserChecker)
-("Approve a corporate Admin", async(testController) => {
+(`Approve a ${data.type} corporate  Admin`, async(testController) => {
     await testController.click(userConfiguration.corporateNavbarSelector)
     await testController.click(userConfiguration.corporateAdminTabSelector)
     await testController.typeText(userConfiguration.searchUsernameSelector, testData.CORPORATE_ADMIN_USER)
@@ -35,7 +35,7 @@ test.before(loginUsers.loginBankUserChecker)
     await testController.expect(userConfiguration.statusSelector.innerText).eql('APPROVED')
 })
  test.before(loginUsers.loginBankUserMaker)
- ("Edit a corporate admin", async(testController) => {
+ (`Edit a  ${data.type}corporate admin`, async(testController) => {
      await userConfiguration.editCorporateAdmin(testController, testData.CORPORATE_ADMIN_USER)
      await testController.typeText(userConfiguration.searchUsernameSelector, testData.CORPORATE_ADMIN_USER, {replace: true})
      await testController.wait(2000)
@@ -43,7 +43,7 @@ test.before(loginUsers.loginBankUserChecker)
  })
 
  test.before(loginUsers.loginBankUserChecker)
- (`Approve PENDING EDIT corporate Admin`, async(testController) => {
+ (`Approve PENDING EDIT  ${data.type} corporate Admin`, async(testController) => {
      await testController.click(userConfiguration.corporateNavbarSelector)
      await testController.click(userConfiguration.corporateAdminTabSelector)
      await testController.typeText(userConfiguration.searchUsernameSelector, testData.CORPORATE_ADMIN_USER)
@@ -59,7 +59,7 @@ test.before(loginUsers.loginBankUserChecker)
     await loginUsers.loginBankUserMaker(testController)
     await userConfiguration.editCorporateAdmin(testController, testData.CORPORATE_ADMIN_USER)
  }) 
- ('Reject PENDING EDIT corporate Admin', async(testController) => {
+ (`Reject PENDING EDIT  ${data.type} corporate Admin`, async(testController) => {
      await loginUsers.loginBankUserChecker(testController)
      await testController.click(userConfiguration.corporateNavbarSelector)
      await testController.click(userConfiguration.corporateAdminTabSelector)
