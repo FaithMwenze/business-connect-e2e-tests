@@ -41,7 +41,7 @@ export default class UserConfiguration extends Roles {
        
       const randomNumber =  Math.random().toString(36).substring(2, 5) + Math.random().toString(36).substring(2, 5);
       const randomName = randomNumber.toString();
-      return `${userType}${randomName}`
+      return `${userType}${randomName}@gmail.com`
    }
      createUser = async(testController,userType, role, randomName) => {
       const scroll = ClientFunction(() => window.scroll(0, 1500))
