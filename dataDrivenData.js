@@ -7,5 +7,6 @@ global.testData = {
     CREATE_CORPORATE_REJECT_ROLE: {},
     CORPORATE_ADMIN_USER : {},
     CREATED_USERS:{}, 
-    REJECT_USERS: {}
+    REJECT_USERS: {},
+    CONNECTOR_NAME: {}
 }
