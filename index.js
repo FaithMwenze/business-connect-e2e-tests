@@ -1,8 +1,7 @@
 require('./env');
 
 const createTestCafe =  require('testcafe')
-
-global.testData = {};
+require('./dataDrivenData')
 
 const createBrowserConnection = async() => {
     let testcafe = null
@@ -25,7 +24,7 @@ const createBrowserConnection = async() => {
                         .run({disablePageCaching: true})
         })        
         .then(failedCount => {
-            console.log('Tests Do ' + failedCount);
+            console.log('Tests failed ' + failedCount);
             testcafe.close();
         })
         .catch(error => {

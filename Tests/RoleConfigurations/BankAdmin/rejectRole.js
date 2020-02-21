@@ -13,7 +13,6 @@ const roleNameSet = [
 	{name: "Bank"}
 ]
 
-testData.CREATE_TO_REJECT_ROLES = {}
 roleNameSet.forEach( data => {
 	test.before(async (testController) => {
 		await loginUsers.loginBankAdminMaker(testController)

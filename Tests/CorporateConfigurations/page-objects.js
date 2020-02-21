@@ -20,9 +20,22 @@ export default class  CorporateConfiguration extends Page {
       this.approveSelector = Selector("span").withText("APPROVE")
       this.editSectorSelector = Selector("div:nth-child(4) > div > div > div > .jss6 > .MuiGrid-root > .MuiGrid-root > .form-control")
       this.rejectSelector  =Selector("span").withText("REJECT")
+      this.selectConnectorSelector = Selector("/div[2]/div[1]/div[2]/div[1]/div[1]/select[1]")
+      
 
     }
     
+    createCorporate = async(testController, corporateName, cif) => {
+      await testController.click(this.corporateNavbarSelector)
+      await testController.click(this.AddCorporateSelector)
+      await testController.typeText(this.typeCifSelector, cif)
+      await testController.click(this.fetchCifSelector)
+      await testController.wait(1000)
+      await testController.click(this.sectorDropDownSelector)
+      await testController.click(this.sectorDropDownSelector.find("option").nth(2))
+      await testController.click(this.saveButtonSelector)
+      await testController.typeText(this.searchCorporateNameSelector, corporateName)
+    }
 
     editCorporate   = async(testController, corporateName) => {
       await testController.click(this.corporateNavbarSelector)

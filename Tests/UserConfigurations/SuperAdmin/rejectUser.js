@@ -7,8 +7,8 @@ const userConfiguration  = new UserConfiguration()
 fixture `Reject user`
 
 const userType = () => [ 
-    {name: "Super admin",  role: testData.CREATED_ROLES['Super Admin']},
-    { name: "Bank", role: testData.CREATED_ROLES["Bank User"]} 
+    {name: "Super admin",  role: testData.SUPERADMIN_CREATED_ROLES['Super Admin']},
+    { name: "Bank", role: testData.SUPERADMIN_CREATED_ROLES["Bank User"]} 
 
 ]
 
@@ -27,19 +27,20 @@ test.requestHooks(mock)
    
     const roles = userType().find(r => r.name === dataName.name);
     await loginUsers.loginSuperAdminMaker(testController)
-    global.rejectUser = await  userConfiguration.createUser(testController, roles.name, roles.role, randomName)
+    const rejectUser = await  userConfiguration.createUser(testController, roles.name, roles.role, randomName)
+    testData.REJECT_USERS = rejectUser
 })
 (`Reject PENDING ${dataName.name} user`, async(testController) => {
     await loginUsers.loginSuperAdminChecker(testController)
     await testController.click(userConfiguration.userConfigurationNavBarSelector)
-    await testController.typeText(userConfiguration.searchUsernameSelector, rejectUser)
+    await testController.typeText(userConfiguration.searchUsernameSelector, testData.REJECT_USERS)
     await testController.wait(1000)
     await testController.click(userConfiguration.editButtonSelector)
     await testController.click(userConfiguration.rejectButtonSelector)
     await testController.click(userConfiguration.yesButtonSelector)
     await testController.typeText(userConfiguration.rejectuserSelector,"Testing Rejection")
     await testController.click(userConfiguration.rejectButtonSelector)
-    await testController.typeText(userConfiguration.searchUsernameSelector,  rejectUser, {replace: true})
+    await testController.typeText(userConfiguration.searchUsernameSelector,  testData.REJECT_USERS, {replace: true})
     await testController.wait(500)
 })
 

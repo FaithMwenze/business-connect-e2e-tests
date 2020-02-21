@@ -6,7 +6,7 @@ import faker from "faker"
 
 const corporateConfiguration = new CorporateConfiguration()
 const corporateName = faker.company.companyName()
-var cif = Math.floor(1000000 + Math.random() * 9000000).toString();
+const  cif = Math.floor(1000000 + Math.random() * 9000000).toString();
 var mock = RequestMock()
 .onRequestTo(`http://192.168.204.30:8082/imb-uat/api/get-corporate-account-details/${cif}`)
 .respond({"accountName":`${corporateName}`,"accountNumber":"00100010311202","phoneNumber":"25420553601","email":"ACCOUNTS@CL.CO.KE","branch":"001","freezeDetails":"NOT FROZEN","accountStatus":"ACTIVE","financialDetails":"FUNDED"},
@@ -22,15 +22,7 @@ fixture `Corporate module`
 test.requestHooks(mock)
 .before(loginUsers.loginBankUserMaker)
 (`create corporate`, async(testController) => {
-   await testController.click(corporateConfiguration.corporateNavbarSelector)
-   await testController.click(corporateConfiguration.AddCorporateSelector)
-   await testController.typeText(corporateConfiguration.typeCifSelector, cif)
-   await testController.click(corporateConfiguration.fetchCifSelector)
-   await testController.wait(1000)
-   await testController.click(corporateConfiguration.sectorDropDownSelector)
-   await testController.click(corporateConfiguration.sectorDropDownSelector.find("option").nth(2))
-   await testController.click(corporateConfiguration.saveButtonSelector)
-   await testController.typeText(corporateConfiguration.searchCorporateNameSelector, corporateName)
+    await corporateConfiguration.createCorporate(testController, corporateName, cif)
    await testController.expect(corporateConfiguration.statusSelector.innerText).eql("PENDING")
 })
 
@@ -73,6 +65,5 @@ test.before( async(testController) =>{
     await testController.click(corporateConfiguration.rejectSelector)
     await testController.typeText(corporateConfiguration.searchCorporateNameSelector, corporateName, {replace: true})
     await testController.expect(corporateConfiguration.statusSelector.innerText).eql("APPROVED")
-
 })
 
