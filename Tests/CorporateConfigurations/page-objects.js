@@ -20,6 +20,8 @@ export default class  CorporateConfiguration extends Page {
       this.approveSelector = Selector("span").withText("APPROVE")
       this.editSectorSelector = Selector("div:nth-child(4) > div > div > div > .jss6 > .MuiGrid-root > .MuiGrid-root > .form-control")
       this.rejectSelector  =Selector("span").withText("REJECT")
+      this.selectConnectorSelector = Selector("/div[2]/div[1]/div[2]/div[1]/div[1]/select[1]")
+      
 
     }
     
