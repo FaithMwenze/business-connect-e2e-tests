@@ -20,7 +20,7 @@ const createBrowserConnection = async() => {
                             takeOnFails: true,
                             pathPattern: "${DATE}_${TIME}/test-${TEST_INDEX}/${USERAGENT}/${FILE_INDEX}.png"    
                             })
-                        .browsers("chrome")
+                        .browsers("chromium: headless")
                         .run({disablePageCaching: true})
         })        
         .then(failedCount => {
