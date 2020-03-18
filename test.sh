@@ -30,5 +30,4 @@ sudo docker run --env LOGIN_URL=$LOGIN_URL \
 --network='host' \
 wambui/business-connect-e2e-tests:v1.0.2 --proxy 192.168.204.70:8080 
 
-echo "Done"
 exit $?
