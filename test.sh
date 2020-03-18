@@ -6,7 +6,7 @@ sudo docker build -t wambui/business-connect-e2e-tests:v1.0.2 .
 
 sleep 5
 echo $LOGIN_URL
-sudo docker run --env LOGIN_URL=$LOGIN_URL \
+sudo docker run -it --env LOGIN_URL=$LOGIN_URL \
 --env BANK_ADMIN_MAKER_USERNAME=$BANK_ADMIN_MAKER_USERNAME \
 --env BANK_ADMIN_MAKER_PASSWORD=$BANK_ADMIN_MAKER_PASSWORD \
 --env SUPER_ADMIN_MAKER_USERNAME=$SUPER_ADMIN_MAKER_USERNAME \
