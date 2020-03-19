@@ -27,7 +27,12 @@ pipeline {
                 sh './test.sh'
                 
         }
-    }
+     }
+    } 
+        post {
+          always {
+            echo 'I will always execute this!'
+        }
+     }
 
-  }
 }
