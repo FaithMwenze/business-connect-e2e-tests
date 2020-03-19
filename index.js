@@ -24,7 +24,7 @@ const createBrowserConnection = async() => {
                         .run({disablePageCaching: true})
         })        
         .then(failedCount => {
-            if(failedCount   === 1){
+            if(failedCount  >= 1){
                 console.log('Tests failed ' + failedCount);
                 process.exit(1)
                 testcafe.close();
