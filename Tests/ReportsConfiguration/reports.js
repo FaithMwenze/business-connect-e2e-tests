@@ -54,4 +54,5 @@ test("Download business report csv", async(testController) => {
     await testController.click(reports.businessReportButton)
     await testController.click(reports.csvButtonSelector)
     await testController.expect(fs.existsSync(windowsDownloadLocation + businesspdfFileName)).ok()
+
 })
