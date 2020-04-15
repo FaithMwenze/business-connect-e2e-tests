@@ -5,7 +5,9 @@ import fs from 'fs';
 
 const reports = new ReportConfiguration()
 
-const fileName = 'generatedBy_react-csv.csv'
+const csvFileName = 'generatedBy_react-csv.csv'
+const corporatepdfFileName = 'Corporate.pdf'
+const businesspdfFileName = 'Business.pdf'
 const windowsDownloadLocation = "C:\\Users/beth.muniu/Downloads/"
 const linuxDownloadLocation = "./Downloads"
 
@@ -32,12 +34,24 @@ test.requestHooks(mock)
    await testController.expect(reports.corporateNameSelector.innerText).eql("JARED LIMITED")
 })
 
-test("Download pdf and csv", async(testController) => {
+test("Download  corporate report csv", async(testController) => {
     await testController.click(reports.reportNavSelector)
     await testController.click(reports.corporateReportButton)
     await testController.click(reports.csvButtonSelector)
     await testController.wait(1000)
-    await testController.expect(fs.existsSync(windowsDownloadLocation + fileName)).ok()
+    await testController.expect(fs.existsSync(windowsDownloadLocation + csvFileName)).ok()
+})
 
+test("Download corporate report pdf", async(testController) =>{
+    await testController.click(reports.reportNavSelector)
+    await testController.click(reports.corporateReportButton)
+    await testController.click(reports.pdfButtonSelector)
+    await testController.expect(fs.existsSync(windowsDownloadLocation + corporatepdfFileName)).ok()
+})
 
+test("Download business report csv", async(testController) => {
+    await testController.click(reports.reportNavSelector)
+    await testController.click(reports.businessReportButton)
+    await testController.click(reports.csvButtonSelector)
+    await testController.expect(fs.existsSync(windowsDownloadLocation + businesspdfFileName)).ok()
 })
