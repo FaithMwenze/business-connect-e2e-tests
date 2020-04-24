@@ -10,6 +10,7 @@ export default class  CorporateConfiguration extends Page {
       this.corporateNavbarSelector = Selector('a[href="/bizcon/corporates"]')
       this.createCorporateTabSelector = Selector("span").withText("CREATE CORPORATE")
       this.AddCorporateSelector = Selector("span").withText("ADD CORPORATE")
+      this.addConfigurationSelector = Selector("span").withText("ADD CONFIGURATION")
       this.typeCifSelector = Selector("#cif")
       this.fetchCifSelector = Selector("span").withText("FETCH")
       this.sectorDropDownSelector = Selector("div:nth-child(3) > div > div > div > .jss6 > .MuiGrid-root > .MuiGrid-root > .form-control")
@@ -20,9 +21,23 @@ export default class  CorporateConfiguration extends Page {
       this.approveSelector = Selector("span").withText("APPROVE")
       this.editSectorSelector = Selector("div:nth-child(4) > div > div > div > .jss6 > .MuiGrid-root > .MuiGrid-root > .form-control")
       this.rejectSelector  =Selector("span").withText("REJECT")
-      this.selectConnectorSelector = Selector("/div[2]/div[1]/div[2]/div[1]/div[1]/select[1]")
+      this.configureCorporateSelector = Selector("span").withText("CONFIGURE CORPORATE")
+      this.selectConnectorSelector = Selector("div:nth-child(1) div:nth-child(1) select:nth-child(2)")
+      this.selectTransitSelector = Selector(".MuiGrid-grid-md-6:nth-child(2) div:nth-child(2) > select.form-control")
+      this.selectCorporateSelector = Selector(".MuiGrid-container:nth-child(2) .MuiGrid-grid-md-6:nth-child(2) > select.form-control:nth-child(2)")
+      this.selectIncomeAccount = Selector(".MuiGrid-container:nth-child(6) .MuiGrid-grid-md-6:nth-child(1) > select.form-control:nth-child(2)")
+      this.selectExciseSelector = Selector (".MuiGrid-grid-md-6:nth-child(4) div:nth-child(2) > select.form-control")
+      this.selectDebitSelector = Selector(".MuiGrid-container:nth-child(8) .MuiGrid-grid-md-6 > select.form-control:nth-child(2)")
+      this.selectChannelSelector = Selector("input[name='Mpesa']")
+      this.selectCollectionSelector = Selector(".MuiGrid-grid-md-6:nth-child(5) div:nth-child(2) > button:nth-child(1) > span:nth-child(1)")
+      this.optionConnectorSelector = this.selectConnectorSelector.find('option:nth-child(2)')
+      this.optionCorporateSelector = this.selectCorporateSelector.find("option:nth-child(2)")
+      this.optionTransitSelector = this.selectTransitSelector.find("option:nth-child(2)")
+      this.optionIncomeSelector = this.selectIncomeAccount.find("option:nth-child(2)")
+      this.optionExciseSelector = this.selectExciseSelector.find("option:nth-child(2)")
+      this.optionDebitSelector = this.selectDebitSelector.find("option:nth-child(2)")
+      this.optionCollectionSelector = Selector("#react-select-2-option-1")
       
-
     }
     
     createCorporate = async(testController, corporateName, cif) => {
