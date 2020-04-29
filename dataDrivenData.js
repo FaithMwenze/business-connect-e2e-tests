@@ -8,5 +8,6 @@ global.testData = {
     CORPORATE_ADMIN_USER : {},
     CREATED_USERS:{}, 
     REJECT_USERS: {},
-    CONNECTOR_NAME: {}
+    CONNECTOR_NAME: {},
+    CORPORATE_CONFIGURATION: {}
 }
