@@ -9,7 +9,8 @@ export default class ReportConfiguration extends Page{
          this.businessReportButton = Selector("span").withText('BUSINESS REPORT')
          this.searchCorporate = Selector("input[placeholder='Search corporate...']")
          this.corporateNameSelector = Selector("tr:nth-child(1) td:nth-child(1)")
-         this.csvButtonSelector = Selector("#csvButton a[download='generatedBy_react-csv.csv']")
+         this.businessCsvButtonSelector = Selector("#csvButton a[download='Business.csv']")
+        this.corporateCsvButtonSelector = Selector("#csvButton a[download='Corporate.csv']")
          this.pdfButtonSelector = Selector("#pdfButton")
 
 
