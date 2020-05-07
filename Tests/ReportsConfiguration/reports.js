@@ -39,7 +39,6 @@ test("Download  corporate report csv", async(testController) => {
     await testController.click(reports.reportNavSelector)
     await testController.click(reports.corporateReportButton)
     await testController.click(reports.corporateCsvButtonSelector)
-    await testController.wait(1000)
 //     if (testController.browser.os.name === 'Windows'){
 //     await testController.expect(fs.existsSync(windowsDownloadLocation + csvFileName)).ok()
 // }
