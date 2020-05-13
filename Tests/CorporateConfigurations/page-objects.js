@@ -45,7 +45,7 @@ export default class  CorporateConfiguration extends Page {
       
     }
     
-    createCorporate = async(testController, corporateName, cif) => {
+    createCorporate = async(testController, cif) => {
       await testController.click(this.corporateNavbarSelector)
       await testController.click(this.AddCorporateSelector)
       await testController.typeText(this.typeCifSelector, cif)

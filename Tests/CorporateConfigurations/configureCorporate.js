@@ -104,7 +104,7 @@ test.before( async(testController) =>{
   await loginUsers.loginBankAdminMaker(testController)
   await corporateConfiguration.editCorporateConfiguration(testController, testData.CORPORATE_CONFIGURATION["corporate"])
 })
-("Reject a PENDING EDIT corporate", async(testController) => {
+("Reject a PENDING EDIT corporate configuration", async(testController) => {
   await loginUsers.loginBankAdminChecker(testController)
   await testController.click(corporateConfiguration.corporateNavbarSelector)
   await testController.click(corporateConfiguration.configureCorporateSelector)
@@ -131,3 +131,4 @@ test.requestHooks(mock)
   await testController.typeText(corporateConfiguration.searchCorporateConfigSelector, testData.CORPORATE_CONFIGURATION["corporate"])
   await testController.expect(corporateConfiguration.statusSelector.innerText).eql("REJECTED")
 })
+ 

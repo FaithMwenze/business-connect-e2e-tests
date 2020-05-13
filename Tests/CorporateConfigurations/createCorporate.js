@@ -22,7 +22,7 @@ fixture `Corporate module`
 test.requestHooks(mock)
 .before(loginUsers.loginBankUserMaker)
 (`create corporate`, async(testController) => {
-    await corporateConfiguration.createCorporate(testController, corporateName, randomNumber)
+    await corporateConfiguration.createCorporate(testController,randomNumber)
     await testController.typeText(corporateConfiguration.searchCorporateNameSelector, corporateName, {replace: true})
    await testController.expect(corporateConfiguration.statusSelector.innerText).eql("PENDING")
 })
