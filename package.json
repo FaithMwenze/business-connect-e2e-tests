@@ -18,7 +18,7 @@
     "dotenv": "^8.2.0",
     "faker": "^4.1.0",
     "fs": "0.0.1-security",
-    "testcafe": "^1.5.0"
+    "testcafe": "^1.7.0"
   },
   "devDependencies": {
     "eslint": "^6.5.1",

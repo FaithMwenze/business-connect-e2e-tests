@@ -38,8 +38,9 @@ export default class  CorporateConfiguration extends Page {
       this.optionExciseSelector = this.selectExciseSelector.find("option:nth-child(2)")
       this.optionDebitSelector = this.selectDebitSelector.find("option:nth-child(2)")
       this.optionCollectionSelector = Selector("#react-select-2-option-1")
-      this.searchCorporateSelector = Selector("input[placeholder='Enter Corporate...']")
+      this.searchCorporateConfigSelector = Selector("input[placeholder='Enter Corporate...']")
       this.statusConfigSelector = Selector("tr:nth-child(1) td:nth-child(4)")
+      this.channelBranchSelector = Selector("input[name='Branch']")
       
       
     }
@@ -90,5 +91,15 @@ export default class  CorporateConfiguration extends Page {
       await testController.click(this.selectCollectionSelector)
       await testController.click(this.selectChannelSelector)
       await testController.click(this.saveButtonSelector)
+    }
+
+    editCorporateConfiguration = async(testController, corporate) => {
+      await testController.click(this.corporateNavbarSelector)
+      await testController.click(this.configureCorporateSelector)
+      await testController.typeText(this.searchCorporateConfigSelector, corporate)
+      await testController.wait(3000)
+      await testController.click(this.editSelector)
+      await testController.click(this.saveButtonSelector)
+    
     }
 }
