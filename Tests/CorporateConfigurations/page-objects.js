@@ -63,7 +63,6 @@ export default class  CorporateConfiguration extends Page {
       await testController.click(this.editSectorSelector)
       await testController.click(this.editSectorSelector.find("option").nth(3))
       await testController.click(this.editSelector)
-      await testController.typeText(this.searchCorporateNameSelector, corporateName, {replace: true})
     }
 
       

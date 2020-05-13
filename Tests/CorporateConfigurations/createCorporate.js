@@ -42,6 +42,7 @@ test.before(loginUsers.loginBankUserChecker)
 test.before(loginUsers.loginBankUserMaker)
 ("Edit a corporate", async(testController) => {
      await corporateConfiguration.editCorporate(testController, corporateName)
+     await testController.typeText(corporateConfiguration.searchCorporateNameSelector, corporateName, {replace: true})
     await testController.wait(3000)
     await testController.expect(corporateConfiguration.statusSelector.innerText).eql("PENDING_EDIT")
 })
@@ -59,7 +60,7 @@ test.before(loginUsers.loginBankUserChecker)
 
 test.before( async(testController) =>{
     await loginUsers.loginBankUserMaker(testController)
-    await corporateConfiguration.editCorporate(testController,corporateName)
+    await corporateConfiguration.editCorporate(testController, corporateName)
 })
 ("Reject a PENDING EDIT corporate", async(testController) => {
     await loginUsers.loginBankUserChecker(testController)
