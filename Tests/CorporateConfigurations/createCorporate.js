@@ -66,6 +66,7 @@ test.before( async(testController) =>{
     await loginUsers.loginBankUserChecker(testController)
     await testController.click(corporateConfiguration.corporateNavbarSelector)
     await testController.typeText(corporateConfiguration.searchCorporateNameSelector, corporateName)
+    await testController.wait(1500)
     await testController.click(corporateConfiguration.editSelector)
     await testController.click(corporateConfiguration.rejectSelector)
     await testController.typeText(corporateConfiguration.searchCorporateNameSelector, corporateName, {replace: true})
