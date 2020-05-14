@@ -10,7 +10,7 @@ const corporatepdfFileName = 'Corporate.pdf'
 const businesspdfFileName = 'Business.pdf'
 
 const windowsDownloadLocation = "C:\\Users/beth.muniu/Downloads/"
-const downloadLocation = "${env.HOME}" + "/"
+const downloadLocation = "$HOME" + "/"
 
 
 // Mock get corporates endpoint 
