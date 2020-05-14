@@ -10,7 +10,7 @@ const corporatepdfFileName = 'Corporate.pdf'
 const businesspdfFileName = 'Business.pdf'
 
 const windowsDownloadLocation = "C:\\Users/beth.muniu/Downloads/"
-const downloadLocation = "${env.WORKSPACE}" + "/"
+const downloadLocation = "${env.HOME}" + "/"
 
 
 // Mock get corporates endpoint 
@@ -28,12 +28,12 @@ contactPhone: "+254721763862"}]},
 fixture `Report configuration`
 .beforeEach(loginUsers.loginBankAdminChecker)
 test.requestHooks(mock)
-// ("search corporate name", async(testController) => {
-//    await testController.click(reports.reportNavSelector)
-//    await testController.click(reports.corporateReportButton)
-//    await testController.typeText(reports.searchCorporate, "JARED LIMITED")
-//    await testController.expect(reports.corporateNameSelector.innerText).eql("JARED LIMITED")
-// })
+("search corporate name", async(testController) => {
+   await testController.click(reports.reportNavSelector)
+   await testController.click(reports.corporateReportButton)
+   await testController.typeText(reports.searchCorporate, "JARED LIMITED")
+   await testController.expect(reports.corporateNameSelector.innerText).eql("JARED LIMITED")
+})
 
 test("Download  corporate report csv", async(testController) => {
     await testController.click(reports.reportNavSelector)

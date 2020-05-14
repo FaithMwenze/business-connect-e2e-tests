@@ -9,9 +9,7 @@ const  randomName  =  Math.random().toString(36).substring(2, 5) + Math.random()
 const  randomId = Math.floor(100000 + Math.random() * 900000).toString();
 const corporateAccountId = Math.floor(1000000 + Math.random() * 9000000).toString();
 // save the corporate name
-console.log("hellloe", randomId)
 testData.CORPORATE_CONFIGURATION['connectorId'] = randomId
-console.log("noooooh",testData.CORPORATE_CONFIGURATION['connectorId'] )
 testData.CORPORATE_CONFIGURATION["corporate"] = `Epow${randomName.toString()}` 
 
 var mock = RequestMock()
