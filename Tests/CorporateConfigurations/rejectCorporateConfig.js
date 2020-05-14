@@ -49,15 +49,13 @@ var mock = RequestMock()
 
 // Mock corporate list endpoint
 .onRequestTo("http://192.168.204.30:8082/imb-uat/api/corporates?status=undefined&type=BANK&size=100")
-.respond([{address1: "string",address2: "string",alertsFlag: false,allowChargeback: false,businessName: testData.CORPORATE_CONFIGURATION["RejectCorporate"],
-businessNumber: null,checkerComments: "string",cif: "0172425",city: "string",
-collectionAccount:"03801501321210", collectionValidation: null,commissionCharges: null,
-contactEmail: "ANDRE@NICKWATSON.CO.ZA",contactFirstName: "string",contactLastName: "string",
-contactPhone: "+27829211512",createdBy: 596703,createdOn: 1574686502697,
-description: "string",deviceType: "Browser",financialDetails: "FUNDED",freezeDetails: "NOT FROZEN",
-helpdeskEmail: "NA",id: 651550,ipAddress: "196.13.209.15",isDiscoverable: false,isUtilityProvider: false,
-lastUpdatedBy: 605201,lastUpdatedOn: 1581937017435,logo: "string",notificationFlag: true,postalCode: "string",
-reason: null,sector: 3,status: "Approved",transactionSplitType: null,url: "string"}], 200, {
+.respond([{address1: "string",address2: "string",alertsFlag: false,allowChargeback: false,businessName: testData.CORPORATE_CONFIGURATION["RejectCorporate"] ,
+businessNumber: null,checkerComments: "string",cif: "0001038",city: "string",collectionAccount: null, collectionValidation: null,
+commissionCharges: null,contactEmail: "LCHEPKOECH@IMBANK.CO.KE",contactFirstName: "string",contactLastName: "string",
+contactPhone: "+254713545988",createdBy: 603256,createdOn: 1589403781012,description: "string",deviceType: "Browser",financialDetails: "NOT FUNDED",
+freezeDetails: "NOT FROZEN",helpdeskEmail: "NA",id: 728082, ipAddress: "197.232.85.116",isDiscoverable: false, isUtilityProvider: false,
+lastUpdatedBy: 605201,lastUpdatedOn: 1589404235434, logo: "string",notificationFlag: true,postalCode: "string",reason: null,
+sector: 3,status:"Approved",transactionSplitType: null, url: "string"}], 200, {
   'access-control-allow-credentials': true,
   'access-control-allow-origin': 'http://192.168.204.21:8484' })
 
