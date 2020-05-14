@@ -20,7 +20,7 @@ var mock = RequestMock()
 test.requestHooks(mock)
 .before(async (testController) => {
     await loginUsers.loginBankUserMaker(testController)
-    await corporateConfiguration.createCorporate(testController, corporateName, cif)
+    await corporateConfiguration.createCorporate(testController, cif)
 }
 
 )
