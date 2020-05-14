@@ -37,7 +37,7 @@ export default class  CorporateConfiguration extends Page {
       this.optionIncomeSelector = this.selectIncomeAccount.find("option:nth-child(2)")
       this.optionExciseSelector = this.selectExciseSelector.find("option:nth-child(2)")
       this.optionDebitSelector = this.selectDebitSelector.find("option:nth-child(2)")
-      this.optionCollectionSelector = Selector("#react-select-2-option-1")
+      this.optionCollectionSelector = Selector("#react-select-2-option-0")
       this.searchCorporateConfigSelector = Selector("input[placeholder='Enter Corporate...']")
       this.statusConfigSelector = Selector("tr:nth-child(1) td:nth-child(4)")
       this.channelBranchSelector = Selector("input[name='Branch']")
