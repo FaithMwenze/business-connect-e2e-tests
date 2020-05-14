@@ -10,7 +10,7 @@ const corporatepdfFileName = 'Corporate.pdf'
 const businesspdfFileName = 'Business.pdf'
 
 const windowsDownloadLocation = "C:\\Users/beth.muniu/Downloads/"
-const linuxDownloadLocation = "$HOME/Downloads"
+const downloadLocation = "${env.WORKSPACE}" + "/"
 
 
 // Mock get corporates endpoint 
@@ -28,47 +28,47 @@ contactPhone: "+254721763862"}]},
 fixture `Report configuration`
 .beforeEach(loginUsers.loginBankAdminChecker)
 test.requestHooks(mock)
-("search corporate name", async(testController) => {
-   await testController.click(reports.reportNavSelector)
-   await testController.click(reports.corporateReportButton)
-   await testController.typeText(reports.searchCorporate, "JARED LIMITED")
-   await testController.expect(reports.corporateNameSelector.innerText).eql("JARED LIMITED")
-})
+// ("search corporate name", async(testController) => {
+//    await testController.click(reports.reportNavSelector)
+//    await testController.click(reports.corporateReportButton)
+//    await testController.typeText(reports.searchCorporate, "JARED LIMITED")
+//    await testController.expect(reports.corporateNameSelector.innerText).eql("JARED LIMITED")
+// })
 
 test("Download  corporate report csv", async(testController) => {
     await testController.click(reports.reportNavSelector)
     await testController.click(reports.corporateReportButton)
     await testController.click(reports.corporateCsvButtonSelector)
-//     if (testController.browser.os.name === 'Windows'){
-//     await testController.expect(fs.existsSync(windowsDownloadLocation + csvFileName)).ok()
-// }
-// else{
-//     await testController.expect(fs.existsSync(linuxDownloadLocation + csvFileName)).ok() 
-// }
+    if (testController.browser.os.name === 'Windows'){
+    await testController.expect(fs.existsSync(windowsDownloadLocation + csvFileName)).ok()
+}
+else{
+    await testController.expect(fs.existsSync(downloadLocation + csvFileName)).ok() 
+}
 })
 
 test("Download corporate report pdf", async(testController) => {
     await testController.click(reports.reportNavSelector)
     await testController.click(reports.corporateReportButton)
     await testController.click(reports.pdfButtonSelector)
-    // if (testController.browser.os.name === 'Windows'){
-    // await testController.expect(fs.existsSync(windowsDownloadLocation + corporatepdfFileName)).ok()
-    // }
-    // else{
-    //     await testController.expect(fs.existsSync(linuxDownloadLocation + corporatepdfFileName)).ok() 
-    // }
+    if (testController.browser.os.name === 'Windows'){
+    await testController.expect(fs.existsSync(windowsDownloadLocation + corporatepdfFileName)).ok()
+    }
+    else{
+        await testController.expect(fs.existsSync(downloadLocation + corporatepdfFileName)).ok() 
+    }
 })
 
 test("Download business report csv", async(testController) => {
     await testController.click(reports.reportNavSelector)
     await testController.click(reports.businessReportButton)
     await testController.click(reports.businessCsvButtonSelector)
-//     if (testController.browser.os.name === 'Windows'){
-//     await testController.expect(fs.existsSync(windowsDownloadLocation + businesspdfFileName)).ok()
-//    }
-//    else{
-//     await testController.expect(fs.existsSync(linuxDownloadLocation + businesspdfFileName)).ok() 
-// }
+    if (testController.browser.os.name === 'Windows'){
+    await testController.expect(fs.existsSync(windowsDownloadLocation + businesspdfFileName)).ok()
+   }
+   else{
+    await testController.expect(fs.existsSync(downloadLocation + businesspdfFileName)).ok() 
+}
 
 
 })
