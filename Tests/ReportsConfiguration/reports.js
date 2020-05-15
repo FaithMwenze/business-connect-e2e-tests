@@ -44,14 +44,15 @@ test.before(loginUsers.loginBankAdminMaker)
 
 })
 
-// test.before(loginUsers.loginBankAdminMaker)
-// ("Download corporate report pdf", async(testController) => {
-//     await testController.click(reports.reportNavSelector)
-//     await testController.click(reports.corporateReportButton)
-//     await testController.click(reports.pdfButtonSelector)
-//     await testController.expect(fs.existsSync(downloadLocation + corporatepdfFileName)).ok()
+test.before(loginUsers.loginBankAdminMaker)
+("Download corporate report pdf", async(testController) => {
+    await reports.enableDownloadingForHeadlessChrome(testController)
+    await testController.click(reports.reportNavSelector)
+    await testController.click(reports.corporateReportButton)
+    await testController.click(reports.pdfButtonSelector)
+    await testController.expect(fs.existsSync(downloadLocation + corporatepdfFileName)).ok()
     
-// })
+})
 
 test.before(loginUsers.loginBankAdminMaker)
 ("Download business report csv", async(testController) => {
