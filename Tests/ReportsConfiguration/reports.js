@@ -39,12 +39,12 @@ test("Download  corporate report csv", async(testController) => {
     await testController.click(reports.reportNavSelector)
     await testController.click(reports.corporateReportButton)
     await testController.click(reports.corporateCsvButtonSelector)
-    if (testController.browser.os.name === 'Windows'){
-    await testController.expect(fs.existsSync(windowsDownloadLocation + csvFileName)).ok()
-}
-else{
-    await testController.expect(fs.existsSync(downloadLocation + csvFileName)).ok() 
-}
+    if (testController.browser.os.name === 'Linux'){
+        await testController.expect(fs.existsSync(downloadLocation + csvFileName)).ok()
+    }
+    else{
+         await testController.expect(fs.existsSync(windowsDownloadLocation + csvFileName)).ok() 
+    }
 })
 
 test("Download corporate report pdf", async(testController) => {
