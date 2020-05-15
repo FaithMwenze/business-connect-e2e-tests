@@ -10,7 +10,7 @@ const createBrowserConnection = async() => {
             testcafe = tc 
         const runner = testcafe.createRunner()
             return  runner
-                        .src("Tests/")
+                        .src("Tests/ReportsConfiguration/")
                         .reporter(['spec', {
                                 name: 'json',
                                 output: 'reports/report.json'
