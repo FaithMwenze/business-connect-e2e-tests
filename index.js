@@ -20,7 +20,7 @@ const createBrowserConnection = async() => {
                             takeOnFails: true,
                             pathPattern: "${DATE}_${TIME}/test-${TEST_INDEX}/${USERAGENT}/${FILE_INDEX}.png"    
                             })
-                        .browsers("chromium:headless")
+                        .browsers("chromium:headless:cdpPort=9223")
                         .run(
                             {"disablePageCaching": true},
                         )
