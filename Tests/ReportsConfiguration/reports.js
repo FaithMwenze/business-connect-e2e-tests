@@ -5,7 +5,8 @@ import fs from 'fs';
 
 const reports = new ReportConfiguration()
 
-const csvFileName = 'generatedBy_react-csv.csv'
+const corporatecsvFileName = 'Corporate.csv'
+const businessCsvFileName = 'Business.csv'
 const corporatepdfFileName = 'Corporate.pdf'
 const businesspdfFileName = 'Business.pdf'
 
@@ -38,31 +39,24 @@ test("Download  corporate report csv", async(testController) => {
     await testController.click(reports.reportNavSelector)
     await testController.click(reports.corporateReportButton)
     await testController.click(reports.corporateCsvButtonSelector)
-    await testController.expect(fs.existsSync(downloadLocation + csvFileName)).ok()
+    console.log("heeeey", downloadLocation)
+    await testController.expect(fs.existsSync(downloadLocation + corporatecsvFileName)).ok()
 })
 
 test("Download corporate report pdf", async(testController) => {
     await testController.click(reports.reportNavSelector)
     await testController.click(reports.corporateReportButton)
     await testController.click(reports.pdfButtonSelector)
-    if (testController.browser.os.name === 'Windows'){
-    await testController.expect(fs.existsSync(windowsDownloadLocation + corporatepdfFileName)).ok()
-    }
-    else{
-        await testController.expect(fs.existsSync(downloadLocation + corporatepdfFileName)).ok() 
-    }
+    await testController.expect(fs.existsSync(downloadLocation + corporatepdfFileName)).ok()
+    
 })
 
 test("Download business report csv", async(testController) => {
     await testController.click(reports.reportNavSelector)
     await testController.click(reports.businessReportButton)
     await testController.click(reports.businessCsvButtonSelector)
-    if (testController.browser.os.name === 'Windows'){
-    await testController.expect(fs.existsSync(windowsDownloadLocation + businesspdfFileName)).ok()
-   }
-   else{
-    await testController.expect(fs.existsSync(downloadLocation + businesspdfFileName)).ok() 
-}
+    await testController.expect(fs.existsSync(downloadLocation + businessCsvFileName)).ok()
+    
 
 
 })
