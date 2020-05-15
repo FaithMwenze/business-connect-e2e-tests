@@ -9,8 +9,7 @@ const csvFileName = 'generatedBy_react-csv.csv'
 const corporatepdfFileName = 'Corporate.pdf'
 const businesspdfFileName = 'Business.pdf'
 
-const windowsDownloadLocation = "C:\\Users/beth.muniu/Downloads/"
-const downloadLocation = "$HOME" + "/"
+const downloadLocation = `${process.env.HOME}/Downloads/`
 
 
 // Mock get corporates endpoint 
@@ -26,25 +25,20 @@ contactPhone: "+254721763862"}]},
 })
 
 fixture `Report configuration`
-.beforeEach(loginUsers.loginBankAdminChecker)
-test.requestHooks(mock)
-("search corporate name", async(testController) => {
-   await testController.click(reports.reportNavSelector)
-   await testController.click(reports.corporateReportButton)
-   await testController.typeText(reports.searchCorporate, "JARED LIMITED")
-   await testController.expect(reports.corporateNameSelector.innerText).eql("JARED LIMITED")
-})
+.beforeEach(loginUsers.loginBankAdminMaker)
+// test.requestHooks(mock)
+// ("search corporate name", async(testController) => {
+//    await testController.click(reports.reportNavSelector)
+//    await testController.click(reports.corporateReportButton)
+//    await testController.typeText(reports.searchCorporate, "JARED LIMITED")
+//    await testController.expect(reports.corporateNameSelector.innerText).eql("JARED LIMITED")
+// })
 
 test("Download  corporate report csv", async(testController) => {
     await testController.click(reports.reportNavSelector)
     await testController.click(reports.corporateReportButton)
     await testController.click(reports.corporateCsvButtonSelector)
-    if (testController.browser.os.name === 'Linux'){
-        await testController.expect(fs.existsSync(downloadLocation + csvFileName)).ok()
-    }
-    else{
-         await testController.expect(fs.existsSync(windowsDownloadLocation + csvFileName)).ok() 
-    }
+    await testController.expect(fs.existsSync(downloadLocation + csvFileName)).ok()
 })
 
 test("Download corporate report pdf", async(testController) => {
