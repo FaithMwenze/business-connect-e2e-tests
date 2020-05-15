@@ -26,13 +26,19 @@ const createBrowserConnection = async() => {
                         )
         })        
         .then(failedCount => {
-            console.log('Tests failed ' + failedCount);
-            testcafe.close();
-            process.exit(1);
+            if(failedCount >=1){
+                console.log('Tests failed ' + failedCount);
+                testcafe.close();
+                process.exit(1);
+            }
+            testcafe.close()
+           
         })
         .catch(error => {
             console.log("heeeey", error)
-            throw new Error(error)
+            testcafe.close()
+            process.exit(1)
+            
         })
                
 }
