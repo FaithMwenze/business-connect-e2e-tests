@@ -10,7 +10,7 @@ const businessCsvFileName = 'Business.csv'
 const corporatepdfFileName = 'Corporate.pdf'
 const businesspdfFileName = 'Business.pdf'
 
-const downloadLocation = `${process.env.HOME}/Downloads/`
+const downloadLocation = `${process.env.JENKINS_HOME}/Downloads/`
 
 
 // Mock get corporates endpoint 
