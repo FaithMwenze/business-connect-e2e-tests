@@ -25,6 +25,7 @@ pipeline {
             steps {
                 sh 'env'
                 sh './test.sh'
+                sh 'ls'
                 
         }
     }
