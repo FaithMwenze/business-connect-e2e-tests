@@ -11,7 +11,7 @@ const businessCsvFileName = 'Business.csv'
 const corporatepdfFileName = 'Corporate.pdf'
 const businesspdfFileName = 'Business.pdf'
 
-const downloadLocation = os.homedir() + "//Downloads//"
+const downloadLocation = os.homedir() + "/Downloads/"
 
 
 // Mock get corporates endpoint 
