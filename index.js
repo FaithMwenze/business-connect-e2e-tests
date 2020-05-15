@@ -10,7 +10,7 @@ const createBrowserConnection = async() => {
             testcafe = tc 
         const runner = testcafe.createRunner()
             return  runner
-                        .src("Tests/")
+                        .src("Tests/ReportsConfiguration/reports.js")
                         .reporter(['spec', {
                                 name: 'json',
                                 output: 'reports/report.json'
@@ -20,8 +20,10 @@ const createBrowserConnection = async() => {
                             takeOnFails: true,
                             pathPattern: "${DATE}_${TIME}/test-${TEST_INDEX}/${USERAGENT}/${FILE_INDEX}.png"    
                             })
-                        .browsers("chromium:headless")
-                        .run({disablePageCaching: true})
+                        .browsers("chrome")
+                        .run(
+                            {"disablePageCaching": true},
+                        )
         })        
         .then(failedCount => {
             console.log('Tests failed ' + failedCount);
