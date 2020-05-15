@@ -36,32 +36,32 @@ fixture `Report configuration`
 //    await testController.expect(reports.corporateNameSelector.innerText).eql("JARED LIMITED")
 // })
 
-// test("Download  corporate report csv", async(testController) => {
-//     await testController.click(reports.reportNavSelector)
-//     await testController.click(reports.corporateReportButton)
-//     await testController.click(reports.corporateCsvButtonSelector)
-//     try {
-//     await testController.expect(fs.existsSync(downloadLocation + corporatecsvFileName)).ok()
-//     }
-//     catch(error){
-//         console.log("hellwo error", error)
-//     }
-// })
-
-test("Download corporate report pdf", async(testController) => {
+test("Download  corporate report csv", async(testController) => {
     await testController.click(reports.reportNavSelector)
     await testController.click(reports.corporateReportButton)
-    await testController.click(reports.pdfButtonSelector)
-    await testController.expect(fs.existsSync(downloadLocation + corporatepdfFileName)).ok()
-    
+    await testController.click(reports.corporateCsvButtonSelector)
+    try {
+    await testController.expect(fs.existsSync(downloadLocation + corporatecsvFileName)).ok()
+    }
+    catch(error){
+        console.log("hellwo error", error)
+    }
 })
 
-test("Download business report csv", async(testController) => {
-    await testController.click(reports.reportNavSelector)
-    await testController.click(reports.businessReportButton)
-    await testController.click(reports.businessCsvButtonSelector)
-    await testController.expect(fs.existsSync(downloadLocation + businessCsvFileName)).ok()
+// test("Download corporate report pdf", async(testController) => {
+//     await testController.click(reports.reportNavSelector)
+//     await testController.click(reports.corporateReportButton)
+//     await testController.click(reports.pdfButtonSelector)
+//     await testController.expect(fs.existsSync(downloadLocation + corporatepdfFileName)).ok()
+    
+// })
+
+// test("Download business report csv", async(testController) => {
+//     await testController.click(reports.reportNavSelector)
+//     await testController.click(reports.businessReportButton)
+//     await testController.click(reports.businessCsvButtonSelector)
+//     await testController.expect(fs.existsSync(downloadLocation + businessCsvFileName)).ok()
     
 
 
-})
+// })
