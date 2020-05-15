@@ -2,6 +2,7 @@ import {loginUsers} from "../Helpers/hooks"
 import ReportConfiguration from "./page-objects"
 import { RequestMock } from "testcafe";
 import fs from 'fs';
+import os from 'os'
 
 const reports = new ReportConfiguration()
 
@@ -10,7 +11,7 @@ const businessCsvFileName = 'Business.csv'
 const corporatepdfFileName = 'Corporate.pdf'
 const businesspdfFileName = 'Business.pdf'
 
-const downloadLocation = `${process.env.HOME}/`
+const downloadLocation = os.homedir() + "//Downloads//"
 
 
 // Mock get corporates endpoint 
@@ -39,7 +40,6 @@ test("Download  corporate report csv", async(testController) => {
     await testController.click(reports.reportNavSelector)
     await testController.click(reports.corporateReportButton)
     await testController.click(reports.corporateCsvButtonSelector)
-    console.log("heeeey", downloadLocation)
     await testController.expect(fs.existsSync(downloadLocation + corporatecsvFileName)).ok()
 })
 
