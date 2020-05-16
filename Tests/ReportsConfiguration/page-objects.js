@@ -35,6 +35,7 @@ export default class ReportConfiguration extends Page{
                 behavior:     'allow',
                 downloadPath: path.resolve(__dirname, 'downloaded')
             });
+            console.log("heeey am here")
     }        
            
 }
