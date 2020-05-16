@@ -12,7 +12,7 @@ export default class ReportConfiguration extends Page{
          this.corporateNameSelector = Selector("tr:nth-child(1) td:nth-child(1)")
          this.businessCsvButtonSelector = Selector("#csvButton a[download='Business.csv']")
         this.corporateCsvButtonSelector = Selector("#csvButton a[download='Corporate.csv']")
-         this.pdfButtonSelector = Selector("#pdfButton")
+         this.pdfButtonSelector = Selector("#pdfButton svg")
 
 
     }

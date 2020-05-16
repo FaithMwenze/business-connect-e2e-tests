@@ -50,7 +50,7 @@ test.before(loginUsers.loginBankAdminMaker)
     await testController.click(reports.reportNavSelector)
     await testController.click(reports.corporateReportButton)
     console.log("Nimepita corporate button")
-    // await testController.click(reports.pdfButtonSelector)
+    await testController.click(reports.pdfButtonSelector)
     console.log("nimepita click pdfbutton")
     await testController.expect(fs.existsSync(downloadLocation + corporatepdfFileName)).ok()
     
