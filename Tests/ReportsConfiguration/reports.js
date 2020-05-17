@@ -46,13 +46,11 @@ test.before(loginUsers.loginBankAdminMaker)
 
 test.before(loginUsers.loginBankAdminMaker)
 ("Download corporate report pdf", async(testController) => {
-    await reports.enableDownloadingForHeadlessChrome(testController)
     await testController.click(reports.reportNavSelector)
     await testController.click(reports.corporateReportButton)
-    console.log("Nimepita corporate button")
-    await testController.click(reports.pdfButtonSelector)
-    console.log("nimepita click pdfbutton")
-    await testController.expect(fs.existsSync(downloadLocation + corporatepdfFileName)).ok()
+    const pdfButtonExists =  reports.pdfButtonSelector.exists
+    await testController.expect(pdfButtonExists).ok()
+
     
 })
 
