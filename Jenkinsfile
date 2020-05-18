@@ -26,6 +26,7 @@ pipeline {
                 sh 'env'
                 sh './test.sh'
                 
+                
         }
     }
 

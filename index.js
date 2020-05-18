@@ -21,16 +21,24 @@ const createBrowserConnection = async() => {
                             pathPattern: "${DATE}_${TIME}/test-${TEST_INDEX}/${USERAGENT}/${FILE_INDEX}.png"    
                             })
                         .browsers("chromium:headless")
-                        .run({disablePageCaching: true})
+                        .run(
+                            {"disablePageCaching": true},
+                        )
         })        
         .then(failedCount => {
-            console.log('Tests failed ' + failedCount);
-            testcafe.close();
-            process.exit(1);
+            if(failedCount >=1){
+                console.log('Tests failed ' + failedCount);
+                testcafe.close();
+                process.exit(1);
+            }
+            testcafe.close()
+           
         })
         .catch(error => {
             console.log("heeeey", error)
-            throw new Error(error)
+            testcafe.close()
+            process.exit(1)
+            
         })
                
 }

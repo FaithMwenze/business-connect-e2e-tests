@@ -37,14 +37,15 @@ export default class  CorporateConfiguration extends Page {
       this.optionIncomeSelector = this.selectIncomeAccount.find("option:nth-child(2)")
       this.optionExciseSelector = this.selectExciseSelector.find("option:nth-child(2)")
       this.optionDebitSelector = this.selectDebitSelector.find("option:nth-child(2)")
-      this.optionCollectionSelector = Selector("#react-select-2-option-1")
-      this.searchCorporateSelector = Selector("input[placeholder='Enter Corporate...']")
+      this.optionCollectionSelector = Selector("#react-select-2-option-0")
+      this.searchCorporateConfigSelector = Selector("input[placeholder='Enter Corporate...']")
       this.statusConfigSelector = Selector("tr:nth-child(1) td:nth-child(4)")
+      this.channelBranchSelector = Selector("input[name='Branch']")
       
       
     }
     
-    createCorporate = async(testController, corporateName, cif) => {
+    createCorporate = async(testController, cif) => {
       await testController.click(this.corporateNavbarSelector)
       await testController.click(this.AddCorporateSelector)
       await testController.typeText(this.typeCifSelector, cif)
@@ -53,17 +54,16 @@ export default class  CorporateConfiguration extends Page {
       await testController.click(this.sectorDropDownSelector)
       await testController.click(this.sectorDropDownSelector.find("option").nth(2))
       await testController.click(this.saveButtonSelector)
-      await testController.typeText(this.searchCorporateNameSelector, corporateName)
     }
 
     editCorporate   = async(testController, corporateName) => {
       await testController.click(this.corporateNavbarSelector)
-      await testController.typeText(this.searchCorporateNameSelector, corporateName)
+      await testController.typeText(this.searchCorporateNameSelector, corporateName,  {replace: true})
+      await testController.wait(2000)
       await testController.click(this.editSelector)
       await testController.click(this.editSectorSelector)
       await testController.click(this.editSectorSelector.find("option").nth(3))
       await testController.click(this.editSelector)
-      await testController.typeText(this.searchCorporateNameSelector, corporateName, {replace: true})
     }
 
       
@@ -90,5 +90,15 @@ export default class  CorporateConfiguration extends Page {
       await testController.click(this.selectCollectionSelector)
       await testController.click(this.selectChannelSelector)
       await testController.click(this.saveButtonSelector)
+    }
+
+    editCorporateConfiguration = async(testController, corporate) => {
+      await testController.click(this.corporateNavbarSelector)
+      await testController.click(this.configureCorporateSelector)
+      await testController.typeText(this.searchCorporateConfigSelector, corporate)
+      await testController.wait(3000)
+      await testController.click(this.editSelector)
+      await testController.click(this.saveButtonSelector)
+    
     }
 }
