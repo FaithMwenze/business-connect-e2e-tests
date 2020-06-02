@@ -28,6 +28,7 @@ contactPhone: "+254721763862"}]},
 
 fixture `Report configuration`
 test.requestHooks(mock)
+.before(loginUsers.loginBankAdminMaker)
 ("search corporate name", async(testController) => {
    await testController.click(reports.reportNavSelector)
    await testController.click(reports.corporateReportButton)

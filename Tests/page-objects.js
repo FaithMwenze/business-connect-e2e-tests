@@ -19,6 +19,7 @@ export default class Page {
 		this.loginButtonSelector = Selector('span').withText("LOGIN")
 		this.profileIconSelector = Selector("button[tabindex='0']")
 		this.logoutSelector = Selector("li").withText("Logout")
+		this.corporateNavbarSelector = Selector("a[href='/businessconnect/bizcon/corporates']") 
 		this.userConfigurationNavBarSelector = Selector("a[href='/businessconnect/bizcon/users']")
 	}
 
