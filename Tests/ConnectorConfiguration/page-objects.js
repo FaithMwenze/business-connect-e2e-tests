@@ -6,7 +6,7 @@ import Page from "../page-objects";
 export default class Connector extends Page {
     constructor(){
         super()
-        this.connectorNavSelector = Selector("a[href='/bizcon/connector']")
+        this.connectorNavSelector = Selector("a[href='/businessconnect/bizcon/connector']")
         this.addConnectorSelector = Selector("span").withText("ADD CONNECTOR")
         this.inputConnectorNameSelector = Selector("#connectorname")
         this.inputConnectorVersionSelector = Selector("#connectorversion")

@@ -5,7 +5,7 @@ import { Selector } from "testcafe"
 export default class ReportConfiguration extends Page{
     constructor(){
         super()
-         this.reportNavSelector = Selector("a[href='/bizcon/reports']")
+         this.reportNavSelector = Selector("a[href='/businessconnect/bizcon/reports']")
          this.corporateReportButton = Selector("span").withText("CORPORATE REPORT")
          this.businessReportButton = Selector("span").withText('BUSINESS REPORT')
          this.searchCorporate = Selector("input[placeholder='Search corporate...']")

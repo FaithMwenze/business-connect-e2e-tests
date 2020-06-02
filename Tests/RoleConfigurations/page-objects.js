@@ -8,7 +8,7 @@ export default class Roles extends Page {
      
 	constructor(){
 		super()
-		this.roleConfigurationNavBarSelector = Selector("a[href='/bizcon/roles']")
+		this.roleConfigurationNavBarSelector = Selector("a[href='/businessconnect/bizcon/roles']")
 		this.addRoleButtonSelector =  Selector("span").withText("ADD ROLE");
 		this.roleNameSelector = Selector("#role-name")
 		this.userDropdownSelector = Selector("select[class='form-control']", {visibilityCheck: true})

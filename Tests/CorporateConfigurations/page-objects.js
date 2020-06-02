@@ -7,7 +7,7 @@ export default class  CorporateConfiguration extends Page {
 
     constructor () {
       super()
-      this.corporateNavbarSelector = Selector('a[href="/bizcon/corporates"]')
+      this.corporateNavbarSelector = Selector('a[href="/businessconnect/bizcon/corporates"]')
       this.createCorporateTabSelector = Selector("span").withText("CREATE CORPORATE")
       this.AddCorporateSelector = Selector("span").withText("ADD CORPORATE")
       this.addConfigurationSelector = Selector("span").withText("ADD CONFIGURATION")
