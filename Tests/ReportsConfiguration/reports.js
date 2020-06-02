@@ -50,9 +50,7 @@ test.before(loginUsers.loginBankAdminMaker)
     await testController.click(reports.reportNavSelector)
     await testController.click(reports.corporateReportButton)
     const pdfButtonExists =  reports.pdfButtonSelector.exists
-    await testController.expect(pdfButtonExists).ok()
-
-    
+        
 })
 
 test.before(loginUsers.loginBankAdminMaker)
