@@ -29,15 +29,6 @@ contactPhone: "+254721763862"}]},
 fixture `Report configuration`
 test.requestHooks(mock)
 .before(loginUsers.loginBankAdminMaker)
-("Download  corporate report csv", async(testController) => {
-    await testController.click(reports.reportNavSelector)
-    await testController.click(reports.corporateReportButton)
-    await testController.click(reports.corporateCsvButtonSelector)
-    await testController.expect(fs.existsSync(downloadLocation + corporatecsvFileName)).ok()
-
-})
-
-test.before(loginUsers.loginBankAdminMaker)
 ("search corporate name", async(testController) => {
    await testController.click(reports.reportNavSelector)
    await testController.click(reports.corporateReportButton)
@@ -45,14 +36,24 @@ test.before(loginUsers.loginBankAdminMaker)
    await testController.expect(reports.corporateNameSelector.innerText).eql("JARED LIMITED")
 })
 
+test.before(loginUsers.loginBankAdminMaker)
+("Download  corporate report csv", async(testController) => {
+    await testController.click(reports.reportNavSelector)
+    await testController.click(reports.corporateReportButton)
+    await testController.click(reports.corporateCsvButtonSelector)
+    await testController.wait(500)
+    await testController.expect(fs.existsSync(downloadLocation + corporatecsvFileName)).ok()
 
+})
 
 test.before(loginUsers.loginBankAdminMaker)
 ("Download corporate report pdf", async(testController) => {
     await testController.click(reports.reportNavSelector)
     await testController.click(reports.corporateReportButton)
     const pdfButtonExists =  reports.pdfButtonSelector.exists
-        
+    await testController.expect(pdfButtonExists).ok()
+
+    
 })
 
 test.before(loginUsers.loginBankAdminMaker)
