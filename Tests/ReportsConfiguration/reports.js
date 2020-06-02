@@ -27,13 +27,13 @@ contactPhone: "+254721763862"}]},
 })
 
 fixture `Report configuration`
-// test.requestHooks(mock)
-// ("search corporate name", async(testController) => {
-//    await testController.click(reports.reportNavSelector)
-//    await testController.click(reports.corporateReportButton)
-//    await testController.typeText(reports.searchCorporate, "JARED LIMITED")
-//    await testController.expect(reports.corporateNameSelector.innerText).eql("JARED LIMITED")
-// })
+test.requestHooks(mock)
+("search corporate name", async(testController) => {
+   await testController.click(reports.reportNavSelector)
+   await testController.click(reports.corporateReportButton)
+   await testController.typeText(reports.searchCorporate, "JARED LIMITED")
+   await testController.expect(reports.corporateNameSelector.innerText).eql("JARED LIMITED")
+})
 
 test.before(loginUsers.loginBankAdminMaker)
 ("Download  corporate report csv", async(testController) => {
